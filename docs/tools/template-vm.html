@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>VPNs - PracSec@RHIT</title>
+        <title>Template VMs - PracSec@RHIT</title>
 
 
         <!-- Custom HTML head -->
@@ -177,27 +177,44 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="vpns"><a class="header" href="#vpns">VPNs</a></h1>
-<p>Let's lay out the following scenario:</p>
-<p>You have been given permission to assess a specific asset for vulnerabilities, and this asset is connected to the internet. You scan the asset for open ports and find a web server running on port 80. You fire up <a href="https://github.com/OJ/gobuster">gobuster</a> to identify potential endpoints on the website.</p>
-<p><em>WARNING: Network traffic of this sort is associated with threat actors. There is a real possibility that your employer or ISP will flag your activities as malicious and take action.</em></p>
-<p>To remedy this, most CTF labs and cyber ranges will house their vulnerable assets on internal, protected networks. Your network traffic is tunneled through a Virtual Private Network (VPN) while traversing the open internet, only emerging on that protected network. Not only are the vulnerable assets protected, your malicious looking traffic is obscured from the public internet.</p>
-<p>In Kali Linux, you can establish VPN connections at the top right corner of the screen.</p>
-<p><img src="kalivpn.png" alt="Image of VPN connection in Kali Linux" /></p>
-<p>You will need the VPN information (host name, port, etc.) from the lab manager. This may come in the form of a file that you import.</p>
-<p><em>WARNING: Most VPNs of this sort are classified as SPLIT TUNNEL networks. Only traffic destined for the private network is tunneled. <strong>All other traffic is sent normally.</strong> Be sure that activities like port scanning, vulnerability scanning, endpoint enumeration, etc. are done only on assets that are part of the private network.</em></p>
+                        <h1 id="linux-template-vms"><a class="header" href="#linux-template-vms">Linux Template VMs</a></h1>
+<p>A template VM is available for you at: <a href="https://classes.csse.rose-hulman.edu/csse14x/" target="_blank">https://classes.csse.rose-hulman.edu/csse14x/</a></p>
+<h2 id="working-with-the-debian-template-vm"><a class="header" href="#working-with-the-debian-template-vm">Working with the debian-template VM</a></h2>
+<p>This is a lightweight VM capable of being uploaded to TryHackMe.</p>
+<p>Usage:</p>
+<ul>
+<li>
+<p>Import it into VirtualBox or VMware Workstation.</p>
+</li>
+<li>
+<p>Next, login with username <code>minion</code> and password <code>kingbob</code>.</p>
+</li>
+<li>
+<p>The root user password is also <code>kingbob</code>. It may be beneficial to use <code>su</code> for some work.</p>
+</li>
+<li>
+<p>ssh is enabled for the <code>minion</code> account. Use it to set up the VM but be sure to disable it before production use.</p>
+</li>
+</ul>
+<h2 id="important-before-uploading-this-to-thm-disable-the-ssh-server"><a class="header" href="#important-before-uploading-this-to-thm-disable-the-ssh-server">Important! Before uploading this to THM, disable the SSH server.</a></h2>
+<p><code>systemctl disable sshd</code></p>
+<h3 id="docker-config"><a class="header" href="#docker-config">Docker Config</a></h3>
+<p>This VM has Docker pre-installed. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always.</p>
+<p><code>docker run -d --restart always </code></p>
+<p>For example, to have it run the tenders container, log in as root and then run:</p>
+<p><code>docker run -d --restart always -p 80:3000 henthornlab/tenders</code></p>
+<p>and then</p>
+<p><code>systemctl disable sshd</code></p>
+<p>The VM now only exposes port 80 and is ready to be uploaded to THM.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../Python/pythonwebserver.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../tools/vpns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../tools/template-vm.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -205,13 +222,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../Python/pythonwebserver.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../tools/vpns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../tools/template-vm.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

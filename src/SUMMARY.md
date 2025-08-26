@@ -1,9 +1,7 @@
 # Summary
 [Introduction](BANNER.md)
 
-
 - [CSSE 140](./140/intro.md)
-
 
 - [CSSE 141](./141/intro.md)
   - [Week 1](./141/week1/week1.md)
@@ -38,12 +36,6 @@
   - [C2 and Kali](./142/sliver.md)
     - [C2 and Kali part 2](./142/sliver2.md)
 
-
-
-
-
-
-
 - [Tools](./tools/tools.md)
     - [Virtual Machines](./tools/vms.md)
         - [Hypervisors](./tools/hypervisors.md)
@@ -68,6 +60,7 @@
         - [Single Line Scripts](./Python/commandline.md)
         - [Quick Webserver](./Python/pythonwebserver.md)
     - [VPNs](./tools/vpns.md)
+    - [Template VMs](./tools/template-vm.md)
 
 
 
