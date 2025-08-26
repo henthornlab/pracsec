@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Kali on Hyper-V - PracSec@RHIT</title>
+        <title>Updating Kali - PracSec@RHIT</title>
 
 
         <!-- Custom HTML head -->
@@ -177,35 +177,22 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="installing-kali-linux-on-hyper-v"><a class="header" href="#installing-kali-linux-on-hyper-v">Installing Kali Linux on Hyper-V</a></h1>
-<p>For this class I would like us to use Hyper-V as our hypervisor of choice. We will be working with the following:</p>
-<ul>
-<li>Kali under Hyper-V with Enhanced Session Mode</li>
-<li>Windows Dev images for some proof-of-concept work. Info <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here.</a></li>
-<li>Windows Sandbox mode <a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-overview">Link to Sandbox mode.</a></li>
-</ul>
-<p>Contact me if you are planning to use a Mac or Linux laptop for this course.</p>
-<p>Ready to install Kali on Hyper-V? Follow these instructions:</p>
-<ol>
-<li>Enable Hyper-V if you haven't already. Instructions are <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>.</li>
-<li>Enable Enhanced Session Mode in Hyper-V. Follow <a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect">this guide</a> for instructions.</li>
-<li>Download an installation ISO (not pre-built VM) from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</li>
-<li>Set up a Hyper-V VM for a Kali install. Check out this guide <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-vm/">here</a>.</li>
-<li>Install Kali into the new VM. Instructions <a href="https://www.kali.org/docs/installation/hard-disk-install/">here</a>.</li>
-<li>Follow <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanced-session-mode/">these instructions</a> on how to make Enhanced Session Mode active. This will allow you to use the clipboard effectively.</li>
-<li>Use your newly found Copy/Paste abilities to transfer a new desktop wallpaper to your Kali instance, for example from <a href="https://github.com/dorianpro/kali-linux-wallpapers">here</a>.</li>
-</ol>
-<p>At this point, you should have Kali in a beautifully rendered screen with a functioning clipboard.</p>
+                        <h1 id="update-kali-linux"><a class="header" href="#update-kali-linux">Update Kali Linux</a></h1>
+<p>Be sure to keep your Kali install up to date using</p>
+<pre><code>sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="check-out-this-video-about-updating-kali"><a class="header" href="#check-out-this-video-about-updating-kali"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d06a483e-d22f-4350-91d1-b33f00f41298">Check out this video about updating Kali</a></a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../tools/kali.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../tools/kali-install.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../tools/kali-tweaks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../tools/kali-first-look.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -215,11 +202,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../tools/kali.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../tools/kali-install.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../tools/kali-tweaks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../tools/kali-first-look.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

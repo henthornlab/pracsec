@@ -952,15 +952,9 @@ You called the program with 1 options. They are:
 <p>Browse to the <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">DOWNLOAD NOW</a> . You will need to create an account with Broadcom to complete this.</p>
 <p>Once downloaded
 <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10">Installation video</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-as-a-virtual-machine"><a class="header" href="#installing-kali-linux-as-a-virtual-machine">Installing Kali Linux as a Virtual Machine</a></h1>
-<h2 id="1-download-the-kali-linux-iso"><a class="header" href="#1-download-the-kali-linux-iso">1. Download the Kali Linux ISO.</a></h2>
-<p>Get it <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a></p>
-<p>Standard users will want the <strong>x86_64</strong> image.
-<img src="tools/./kali-iso.png" alt="alt text" /></p>
-<h2 id="2-install-kali-linux-as-a-vm"><a class="header" href="#2-install-kali-linux-as-a-vm">2. Install Kali Linux as a VM</a></h2>
-<p>Installation video for Kali Linux on VMware Workstation / Fusion can be found <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dcb021-b1f2-41c9-9f63-b33f00f41236">here</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vm-snapshots"><a class="header" href="#vm-snapshots">VM Snapshots</a></h1>
-<p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time. You can then roll back changes to a previous known state whenever needed.</p>
+<p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time -- this includes what is loaded in memory, shown on the screen, etc. You can then roll back changes to a previous known state whenever needed.</p>
+<h2 id="check-out-this-video-about-snapshots"><a class="header" href="#check-out-this-video-about-snapshots"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=379a5705-b2e7-4de5-a62d-b34001124e27">Check out this video about snapshots</a></a></h2>
 <p>For CTF competitions, a workflow I see quite a bit is:</p>
 <ol>
 <li>Create a VM and tweak with all the tools you will need.</li>
@@ -969,25 +963,6 @@ You called the program with 1 options. They are:
 <li>Complete the challenge.</li>
 <li>Rollback the VM to the pre-challenge snapshot. On to the next challenge!</li>
 </ol>
-<p>On Hyper-V, snapshots are known as <strong>Checkpoints</strong>.</p>
-<p>On Hyper-V Manager, right click your VM and select Checkpoint.
-<img src="tools/checkpoint.png" alt="Checkpointing Image" /></p>
-<p>You will thank yourself later if you rename the checkpoint to something more descriptive.</p>
-<p><img src="tools/checkpoint2.png" alt="Checkpointing Image" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-shared-file-space-between-your-host-and-guest-vm"><a class="header" href="#creating-a-shared-file-space-between-your-host-and-guest-vm">Creating a shared file space between your host and guest (VM).</a></h1>
-<h2 id="warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files"><a class="header" href="#warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files">Warning: One of the main reasons we run VMs is to create isolation between our work machine and potentially malicious code. Think hard about the implications of allowing a guest VM access to some of your files.</a></h2>
-<p>To create a shared file space between your host and VM, you can use the Settings area of VMware Player and select "Shared Folders".</p>
-<p><img src="tools/vmware-shared.png" alt="image that shows vmware shared folder settings" /></p>
-<p>On your Kali VM, complete the following:</p>
-<pre><code>sudo mkdir /mnt/shared
-</code></pre>
-<pre><code>sudo /usr/bin/vmhgfs-fuse .host:/shared /mnt/shared -o subtype=vmhgfs-fuse,allow_other
-</code></pre>
-<p>Tweak the line above if you named your share something other than <code>shared</code>. A shared file space is now available at /mnt/shared on your VM.</p>
-<p>On Windows:</p>
-<p><img src="tools/vmshared-win.png" alt="Windows file explorer screenshot" /></p>
-<p>On Kali:</p>
-<p><img src="tools/vmshared-kali.png" alt="Windows file explorer screenshot" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kali-linux"><a class="header" href="#kali-linux">Kali Linux</a></h1>
 <p>The most famous distribution of Linux used by hackers worldwide. The main website is <a href="https://www.kali.org/">here</a>.</p>
 <p>Note that Kali is based on Debian Linux, so you can find tips on setup, package management, etc. by searching for Kali, Debian, or even Ubuntu.</p>
@@ -995,27 +970,21 @@ You called the program with 1 options. They are:
 <p><code>The Kali Linux distribution is based on Debian Testing. Therefore, most of the Kali packages are imported, as-is, from the Debian repositories. In some cases, newer packages may be imported from Debian Unstable or Debian Experimental, either to improve user experience, or to incorporate needed bug fixes.</code></p>
 <p>I prefer create a VM from scratch using an ISO from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</p>
 <p>If you have a working hypervisor and are on PC, you can also grab a pre-built VM image from <a href="https://www.kali.org/get-kali/#kali-virtual-machines">here</a></p>
-<p>As of August 2023, the most recent version is 2023.3</p>
-<p><img src="tools/banner-2023.3-release.jpg" alt="Kali Linux release banner" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-on-hyper-v"><a class="header" href="#installing-kali-linux-on-hyper-v">Installing Kali Linux on Hyper-V</a></h1>
-<p>For this class I would like us to use Hyper-V as our hypervisor of choice. We will be working with the following:</p>
-<ul>
-<li>Kali under Hyper-V with Enhanced Session Mode</li>
-<li>Windows Dev images for some proof-of-concept work. Info <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here.</a></li>
-<li>Windows Sandbox mode <a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-overview">Link to Sandbox mode.</a></li>
-</ul>
-<p>Contact me if you are planning to use a Mac or Linux laptop for this course.</p>
-<p>Ready to install Kali on Hyper-V? Follow these instructions:</p>
-<ol>
-<li>Enable Hyper-V if you haven't already. Instructions are <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>.</li>
-<li>Enable Enhanced Session Mode in Hyper-V. Follow <a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect">this guide</a> for instructions.</li>
-<li>Download an installation ISO (not pre-built VM) from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</li>
-<li>Set up a Hyper-V VM for a Kali install. Check out this guide <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-vm/">here</a>.</li>
-<li>Install Kali into the new VM. Instructions <a href="https://www.kali.org/docs/installation/hard-disk-install/">here</a>.</li>
-<li>Follow <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanced-session-mode/">these instructions</a> on how to make Enhanced Session Mode active. This will allow you to use the clipboard effectively.</li>
-<li>Use your newly found Copy/Paste abilities to transfer a new desktop wallpaper to your Kali instance, for example from <a href="https://github.com/dorianpro/kali-linux-wallpapers">here</a>.</li>
-</ol>
-<p>At this point, you should have Kali in a beautifully rendered screen with a functioning clipboard.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-as-a-virtual-machine"><a class="header" href="#installing-kali-linux-as-a-virtual-machine">Installing Kali Linux as a Virtual Machine</a></h1>
+<h2 id="1-download-the-kali-linux-iso"><a class="header" href="#1-download-the-kali-linux-iso">1. Download the Kali Linux ISO.</a></h2>
+<p>Get it <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a></p>
+<p>Standard users will want the <strong>x86_64</strong> image.
+<img src="tools/./kali-iso.png" alt="alt text" /></p>
+<h2 id="2-install-kali-linux-as-a-vm"><a class="header" href="#2-install-kali-linux-as-a-vm">2. Install Kali Linux as a VM</a></h2>
+<p>Installation video for Kali Linux on VMware Workstation / Fusion can be found <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dcb021-b1f2-41c9-9f63-b33f00f41236">here</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="update-kali-linux"><a class="header" href="#update-kali-linux">Update Kali Linux</a></h1>
+<p>Be sure to keep your Kali install up to date using</p>
+<pre><code>sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="check-out-this-video-about-updating-kali"><a class="header" href="#check-out-this-video-about-updating-kali"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d06a483e-d22f-4350-91d1-b33f00f41298">Check out this video about updating Kali</a></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="first-look-at-kali"><a class="header" href="#first-look-at-kali">First look at Kali</a></h1>
+<h2 id="check-out-this-video-on-a-first-look-at-a-kali-install"><a class="header" href="#check-out-this-video-on-a-first-look-at-a-kali-install"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ea724016-a834-46fc-addc-b33f00f41272">Check out this video on a first look at a Kali install</a></a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kali-tweaks"><a class="header" href="#kali-tweaks">kali-tweaks</a></h1>
 <p>Be sure to check out the <code>kali-tweaks</code> command. You will find some nice customization options here.</p>
 <p><img src="tools/kali-tweaks.png" alt="kali-tweaks menu" /></p>

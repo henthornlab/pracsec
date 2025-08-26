@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Shared Files on VMware - PracSec@RHIT</title>
+        <title>Kali first look - PracSec@RHIT</title>
 
 
         <!-- Custom HTML head -->
@@ -177,30 +177,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="creating-a-shared-file-space-between-your-host-and-guest-vm"><a class="header" href="#creating-a-shared-file-space-between-your-host-and-guest-vm">Creating a shared file space between your host and guest (VM).</a></h1>
-<h2 id="warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files"><a class="header" href="#warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files">Warning: One of the main reasons we run VMs is to create isolation between our work machine and potentially malicious code. Think hard about the implications of allowing a guest VM access to some of your files.</a></h2>
-<p>To create a shared file space between your host and VM, you can use the Settings area of VMware Player and select "Shared Folders".</p>
-<p><img src="vmware-shared.png" alt="image that shows vmware shared folder settings" /></p>
-<p>On your Kali VM, complete the following:</p>
-<pre><code>sudo mkdir /mnt/shared
-</code></pre>
-<pre><code>sudo /usr/bin/vmhgfs-fuse .host:/shared /mnt/shared -o subtype=vmhgfs-fuse,allow_other
-</code></pre>
-<p>Tweak the line above if you named your share something other than <code>shared</code>. A shared file space is now available at /mnt/shared on your VM.</p>
-<p>On Windows:</p>
-<p><img src="vmshared-win.png" alt="Windows file explorer screenshot" /></p>
-<p>On Kali:</p>
-<p><img src="vmshared-kali.png" alt="Windows file explorer screenshot" /></p>
+                        <h1 id="first-look-at-kali"><a class="header" href="#first-look-at-kali">First look at Kali</a></h1>
+<h2 id="check-out-this-video-on-a-first-look-at-a-kali-install"><a class="header" href="#check-out-this-video-on-a-first-look-at-a-kali-install"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ea724016-a834-46fc-addc-b33f00f41272">Check out this video on a first look at a Kali install</a></a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../tools/vm-snapshots.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../tools/updating-kali.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../tools/kali.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../tools/kali-tweaks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -210,11 +198,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../tools/vm-snapshots.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../tools/updating-kali.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../tools/kali.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../tools/kali-tweaks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

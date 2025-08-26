@@ -13,6 +13,3 @@ I prefer create a VM from scratch using an ISO from [here](https://www.kali.org/
 
 If you have a working hypervisor and are on PC, you can also grab a pre-built VM image from [here](https://www.kali.org/get-kali/#kali-virtual-machines)
 
-As of August 2023, the most recent version is 2023.3
-
-![Kali Linux release banner](banner-2023.3-release.jpg)
