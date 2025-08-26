@@ -985,6 +985,14 @@ sudo apt upgrade
 <h2 id="check-out-this-video-about-updating-kali"><a class="header" href="#check-out-this-video-about-updating-kali"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d06a483e-d22f-4350-91d1-b33f00f41298">Check out this video about updating Kali</a></a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="first-look-at-kali"><a class="header" href="#first-look-at-kali">First look at Kali</a></h1>
 <h2 id="check-out-this-video-on-a-first-look-at-a-kali-install"><a class="header" href="#check-out-this-video-on-a-first-look-at-a-kali-install"><a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ea724016-a834-46fc-addc-b33f00f41272">Check out this video on a first look at a Kali install</a></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-and-gdb"><a class="header" href="#build-tools-and-gdb">Build Tools and GDB</a></h1>
+<p>After creating your Kali Linux VM you should consider installing the common build tools:</p>
+<p><code>sudo apt install build-essential</code></p>
+<p>This should install gcc, g++, make, and several others.</p>
+<p>To add support for 32-bit binaries, which are still common in CTFs, do the following:</p>
+<p><code>sudo apt install gcc-multilib g++-multilib</code></p>
+<p>Finally, install the GNU Project Debugger, gdb:</p>
+<p><code>sudo apt install gdb</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kali-tweaks"><a class="header" href="#kali-tweaks">kali-tweaks</a></h1>
 <p>Be sure to check out the <code>kali-tweaks</code> command. You will find some nice customization options here.</p>
 <p><img src="tools/kali-tweaks.png" alt="kali-tweaks menu" /></p>
@@ -1008,14 +1016,6 @@ sudo apt upgrade
 <p>You should be able to log in from your desktop now using:</p>
 <pre><code>ssh kali@192.168.46.9
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-and-gdb"><a class="header" href="#build-tools-and-gdb">Build Tools and GDB</a></h1>
-<p>After creating your Kali Linux VM you should consider installing the common build tools:</p>
-<p><code>sudo apt install build-essential</code></p>
-<p>This should install gcc, g++, make, and several others.</p>
-<p>To add support for 32-bit binaries, which are still common in CTFs, do the following:</p>
-<p><code>sudo apt install gcc-multilib g++-multilib</code></p>
-<p>Finally, install the GNU Project Debugger, gdb:</p>
-<p><code>sudo apt install gdb</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra"><a class="header" href="#ghidra">Ghidra</a></h1>
 <p>Ghidra is an open source tool from the National Security Agency (yes, that NSA!) that we use for reverse engineering.</p>
 <p>Ghidra is a Java app, so you need a working JDK before you can run it.</p>
