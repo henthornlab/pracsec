@@ -181,307 +181,6 @@
                         <h1 id="welcome-to-csse14x-practical-security"><a class="header" href="#welcome-to-csse14x-practical-security">Welcome to CSSE14x: Practical Security</a></h1>
 <img src="pracSecCat.png" alt="Course Banner Image">
 <h3 id="lecture-notes-of-dave-henthorn-rose-hulman-institute-of-technology"><a class="header" href="#lecture-notes-of-dave-henthorn-rose-hulman-institute-of-technology">Lecture notes of Dave Henthorn, Rose-Hulman Institute of Technology</a></h3>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ctf-tools"><a class="header" href="#ctf-tools">CTF Tools</a></h1>
-<p>Over the next few pages we will take a look at the tools we will use in this course.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="virtual-machines"><a class="header" href="#virtual-machines">Virtual Machines</a></h1>
-<p>Many of us run our CTF/penetration testing tools inside a <em>virtual</em> machine instead of on our desktop.</p>
-<p>This helps because we can:</p>
-<ul>
-<li>keep our own machines free of extraneous tools</li>
-<li>protect our machines from software of unknown origin</li>
-<li>run tools that are not native to our default OS</li>
-</ul>
-<p>Before you can run a virtual machine, known as the <strong>guest</strong>, you need to set up the <strong>host</strong> machine as a <strong>hypervisor</strong>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="hypervisors"><a class="header" href="#hypervisors">Hypervisors</a></h1>
-<p>Hypervisors manage virtual machines and allow them access to your hardware. A hypervisor will allow you to control how much memory, disk space, and CPU time the guest is able to have from the host machine. The most common hypervisors for penetration testing or CTF competitions are:</p>
-<ul>
-<li>VMware</li>
-<li>VirtualBox</li>
-<li>Hyper-V</li>
-<li>KVM / QEMU</li>
-</ul>
-<p>I find hypervisors to be a matter of personal preference -- each has a set of pros/cons. Some thoughts:</p>
-<h2 id="vmware"><a class="header" href="#vmware">VMware:</a></h2>
-<ul>
-<li>The flagship VMware hypervisors are run on the largest servers in the world and are hugely expensive but immensely capable. The company provides some of this functionality in desktop versions, VMware Workstation (Windows/Linux) and VMware Fusion (Mac). Previously, these applications required paid licenses, but recent changes from Broadcom allow us to use these for free. These are my personal choice. High quality networking options, display tuning, reliable copy-paste, easy snapshots, etc. <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">Download here -- requires you to create a Broadcom account.</a>. Installation instructions follow on the next few pages of this site.</li>
-</ul>
-<h2 id="virtualbox"><a class="header" href="#virtualbox">VirtualBox</a></h2>
-<ul>
-<li>Available <a href="https://www.virtualbox.org/">here</a> Sort of the opposite of VMware... much of it is open source (GPLv2 license) and free. Very popular for hackers because of this. I wish it had better documentation and advanced networking support, but you can't beat the price.</li>
-</ul>
-<h2 id="hyper-v"><a class="header" href="#hyper-v">Hyper-V</a></h2>
-<ul>
-<li>Developed by Microsoft and available as a built-in service in many versions of Windows, this is an easy one to use for many people. Growing in popularity every year. Learn how to enable Hyper-V <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>. With some configuration tweaks you can use Enhanced Session Mode which enables a better graphical experience along with a working clipboard, complete with file transfer.</li>
-</ul>
-<h2 id="kvmqemu"><a class="header" href="#kvmqemu">KVM/QEMU</a></h2>
-<ul>
-<li>Great choice if you are on a Linux distro. Instructions for enabling on Debian distros <a href="https://wiki.debian.org/KVM">here</a>.</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-vmware-workstation-or-fusion"><a class="header" href="#installing-vmware-workstation-or-fusion">Installing VMware Workstation or Fusion</a></h1>
-<p>The following instructions will help you install VMware Workstation on Windows (standard RHIT setup).</p>
-<h2 id="acquire-vmware"><a class="header" href="#acquire-vmware">Acquire VMware</a></h2>
-<p><em>Notation: Workstation refers to the product on Windows or Linux. Fusion is the product on MacOS.</em></p>
-<p><em>Workstation and Workstation Pro or Fusion and Fusion Pro used to be different licenses. Broadcom now allows everyone to use Pro</em></p>
-<p>Browse to the <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">DOWNLOAD NOW</a> . You will need to create an account with Broadcom to complete this.</p>
-<p>Once downloaded
-<a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10">Installation video</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-as-a-virtual-machine"><a class="header" href="#installing-kali-linux-as-a-virtual-machine">Installing Kali Linux as a Virtual Machine</a></h1>
-<h2 id="1-download-the-kali-linux-iso"><a class="header" href="#1-download-the-kali-linux-iso">1. Download the Kali Linux ISO.</a></h2>
-<p>Get it <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a></p>
-<p>Standard users will want the <strong>x86_64</strong> image.
-<img src="tools/./kali-iso.png" alt="alt text" /></p>
-<h2 id="2-install-kali-linux-as-a-vm"><a class="header" href="#2-install-kali-linux-as-a-vm">2. Install Kali Linux as a VM</a></h2>
-<p>Installation video for Kali Linux on VMware Workstation / Fusion can be found <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dcb021-b1f2-41c9-9f63-b33f00f41236">here</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vm-snapshots"><a class="header" href="#vm-snapshots">VM Snapshots</a></h1>
-<p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time. You can then roll back changes to a previous known state whenever needed.</p>
-<p>For CTF competitions, a workflow I see quite a bit is:</p>
-<ol>
-<li>Create a VM and tweak with all the tools you will need.</li>
-<li>Snapshot the VM.</li>
-<li>Start a challenge. This may require you to install new software, add new packages to Python, add temporary entries to /etc/hosts, download binaries for reverse engineering, etc.</li>
-<li>Complete the challenge.</li>
-<li>Rollback the VM to the pre-challenge snapshot. On to the next challenge!</li>
-</ol>
-<p>On Hyper-V, snapshots are known as <strong>Checkpoints</strong>.</p>
-<p>On Hyper-V Manager, right click your VM and select Checkpoint.
-<img src="tools/checkpoint.png" alt="Checkpointing Image" /></p>
-<p>You will thank yourself later if you rename the checkpoint to something more descriptive.</p>
-<p><img src="tools/checkpoint2.png" alt="Checkpointing Image" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-shared-file-space-between-your-host-and-guest-vm"><a class="header" href="#creating-a-shared-file-space-between-your-host-and-guest-vm">Creating a shared file space between your host and guest (VM).</a></h1>
-<h2 id="warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files"><a class="header" href="#warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files">Warning: One of the main reasons we run VMs is to create isolation between our work machine and potentially malicious code. Think hard about the implications of allowing a guest VM access to some of your files.</a></h2>
-<p>To create a shared file space between your host and VM, you can use the Settings area of VMware Player and select "Shared Folders".</p>
-<p><img src="tools/vmware-shared.png" alt="image that shows vmware shared folder settings" /></p>
-<p>On your Kali VM, complete the following:</p>
-<pre><code>sudo mkdir /mnt/shared
-</code></pre>
-<pre><code>sudo /usr/bin/vmhgfs-fuse .host:/shared /mnt/shared -o subtype=vmhgfs-fuse,allow_other
-</code></pre>
-<p>Tweak the line above if you named your share something other than <code>shared</code>. A shared file space is now available at /mnt/shared on your VM.</p>
-<p>On Windows:</p>
-<p><img src="tools/vmshared-win.png" alt="Windows file explorer screenshot" /></p>
-<p>On Kali:</p>
-<p><img src="tools/vmshared-kali.png" alt="Windows file explorer screenshot" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-linux"><a class="header" href="#kali-linux">Kali Linux</a></h1>
-<p>The most famous distribution of Linux used by hackers worldwide. The main website is <a href="https://www.kali.org/">here</a>.</p>
-<p>Note that Kali is based on Debian Linux, so you can find tips on setup, package management, etc. by searching for Kali, Debian, or even Ubuntu.</p>
-<p>From the Kali website:</p>
-<p><code>The Kali Linux distribution is based on Debian Testing. Therefore, most of the Kali packages are imported, as-is, from the Debian repositories. In some cases, newer packages may be imported from Debian Unstable or Debian Experimental, either to improve user experience, or to incorporate needed bug fixes.</code></p>
-<p>I prefer create a VM from scratch using an ISO from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</p>
-<p>If you have a working hypervisor and are on PC, you can also grab a pre-built VM image from <a href="https://www.kali.org/get-kali/#kali-virtual-machines">here</a></p>
-<p>As of August 2023, the most recent version is 2023.3</p>
-<p><img src="tools/banner-2023.3-release.jpg" alt="Kali Linux release banner" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-on-hyper-v"><a class="header" href="#installing-kali-linux-on-hyper-v">Installing Kali Linux on Hyper-V</a></h1>
-<p>For this class I would like us to use Hyper-V as our hypervisor of choice. We will be working with the following:</p>
-<ul>
-<li>Kali under Hyper-V with Enhanced Session Mode</li>
-<li>Windows Dev images for some proof-of-concept work. Info <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here.</a></li>
-<li>Windows Sandbox mode <a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-overview">Link to Sandbox mode.</a></li>
-</ul>
-<p>Contact me if you are planning to use a Mac or Linux laptop for this course.</p>
-<p>Ready to install Kali on Hyper-V? Follow these instructions:</p>
-<ol>
-<li>Enable Hyper-V if you haven't already. Instructions are <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>.</li>
-<li>Enable Enhanced Session Mode in Hyper-V. Follow <a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect">this guide</a> for instructions.</li>
-<li>Download an installation ISO (not pre-built VM) from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</li>
-<li>Set up a Hyper-V VM for a Kali install. Check out this guide <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-vm/">here</a>.</li>
-<li>Install Kali into the new VM. Instructions <a href="https://www.kali.org/docs/installation/hard-disk-install/">here</a>.</li>
-<li>Follow <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanced-session-mode/">these instructions</a> on how to make Enhanced Session Mode active. This will allow you to use the clipboard effectively.</li>
-<li>Use your newly found Copy/Paste abilities to transfer a new desktop wallpaper to your Kali instance, for example from <a href="https://github.com/dorianpro/kali-linux-wallpapers">here</a>.</li>
-</ol>
-<p>At this point, you should have Kali in a beautifully rendered screen with a functioning clipboard.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-tweaks"><a class="header" href="#kali-tweaks">kali-tweaks</a></h1>
-<p>Be sure to check out the <code>kali-tweaks</code> command. You will find some nice customization options here.</p>
-<p><img src="tools/kali-tweaks.png" alt="kali-tweaks menu" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ssh-into-kali"><a class="header" href="#ssh-into-kali">SSH into Kali</a></h1>
-<p>Since many of the tools you will use on Kali are command line, you don't always need to use the graphical user interface. Sometimes it's easiest to use a terminal and SSH into your Kali instance.</p>
-<p>Out of the box, SSH connections to your Kali box are disabled. To enable them, complete the following on your VM:</p>
-<p>Install the OpenSSH server.</p>
-<pre><code>sudo apt install openssh-server
-</code></pre>
-<p>Enable the SSH service.</p>
-<pre><code>sudo systemctl enable ssh.service 
-</code></pre>
-<p>Now start the SSH service.</p>
-<pre><code>sudo systemctl start ssh.service
-</code></pre>
-<p>Finally, record the IP address of your box -- usually located at eth0 for a VM with one network interface.</p>
-<pre><code>ip a
-</code></pre>
-<p><img src="tools/ipaddr.png" alt="image" /></p>
-<p>In the above case, the address of your VM is <code>192.168.46.91</code> and your username is <code>kali</code>.</p>
-<p>You should be able to log in from your desktop now using:</p>
-<pre><code>ssh kali@192.168.46.9
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-quick-windows-machine-for-analysis-work"><a class="header" href="#creating-a-quick-windows-machine-for-analysis-work">Creating a quick Windows Machine for Analysis Work</a></h1>
-<p>Sometimes you need to create a quick Windows VM for analysis work. Here's one way:</p>
-<p>In Hyper-V, select <strong>Quick Create</strong> from the <strong>Actions</strong> panel.</p>
-<p><img src="tools/winbox.png" alt="Hyper-V " /></p>
-<p>Then select the <strong>Windows 11 dev environment</strong>. This will create a Windows VM that is ready to go. The best part? All of the Windows stuff (Xbox Live, OneDrive, etc.) that requires you to sign in with an account has been disabled.</p>
-<p><img src="tools/winbox2.png" alt="Hyper-V " /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-and-gdb"><a class="header" href="#build-tools-and-gdb">Build Tools and GDB</a></h1>
-<p>After creating your Kali Linux VM you should consider installing the common build tools:</p>
-<p><code>sudo apt install build-essential</code></p>
-<p>This should install gcc, g++, make, and several others.</p>
-<p>To add support for 32-bit binaries, which are still common in CTFs, do the following:</p>
-<p><code>sudo apt install gcc-multilib g++-multilib</code></p>
-<p>Finally, install the GNU Project Debugger, gdb:</p>
-<p><code>sudo apt install gdb</code></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra"><a class="header" href="#ghidra">Ghidra</a></h1>
-<p>Ghidra is an open source tool from the National Security Agency (yes, that NSA!) that we use for reverse engineering.</p>
-<p>Ghidra is a Java app, so you need a working JDK before you can run it.</p>
-<ol>
-<li>
-<p>On a Linux machine, you can check your Java version with:</p>
-<pre><code>java -version
-</code></pre>
-</li>
-<li>
-<p>Look for the version output, something like:
-<code>openjdk version "17.0.8" 2023-07-18</code>
-Be sure that you have version 17 or higher.</p>
-</li>
-<li>
-<p>If you need to install Java, you can use the following command on Kali Linux.</p>
-<pre><code>sudo apt install default-jdk
-</code></pre>
-</li>
-<li>
-<p>After you <a href="https://ghidra-sre.org/">download Ghidra</a>, there isn't a traditional installer. Instead, do the following:</p>
-<ul>
-<li>
-<p>Unzip the file. In the unzipped archive, you will find a script to start Ghidra.</p>
-<ul>
-<li>On UNIX-like systems, run the file</li>
-</ul>
-<pre><code>./ghidraRun
-</code></pre>
-<ul>
-<li>On Windows, run the file:</li>
-</ul>
-<pre><code>ghidraRun.bat
-</code></pre>
-</li>
-</ul>
-</li>
-</ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra-not-working"><a class="header" href="#ghidra-not-working">Ghidra not working?</a></h1>
-<p>If you find that parts of Ghidra are not working out of the box on your Kali instance (especially Kali on ARM), try the following:</p>
-<ol>
-<li>
-<p>Install sdkman</p>
-<pre><code>sudo curl -s "https://get.sdkman.io" | bash
-</code></pre>
-</li>
-<li>
-<p>Restart your terminal shell.</p>
-</li>
-<li>
-<p>Install gradle</p>
-<pre><code>sdk install gradle
-</code></pre>
-</li>
-<li>
-<p>cd into your Ghidra directory.</p>
-</li>
-<li>
-<p>cd into the <code>support</code> directory.</p>
-</li>
-<li>
-<p>Run</p>
-<pre><code>./buildNatives
-</code></pre>
-</li>
-<li>
-<p>Now try Ghidra.</p>
-</li>
-</ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef"><a class="header" href="#cyberchef">Cyberchef</a></h1>
-<p>Cyberchef is a tool put out by the GCHQ which is "the UK's intelligence, security and cyber agency". It's a web-app that aims to be your go-to tool for hacking data manipulation.</p>
-<p>You can find it on the web <a href="https://gchq.github.io/CyberChef/">here</a> or inside many infosec packages like Security Onion.</p>
-<p><img src="tools/cyberchef1.png" alt="Starting image of Cyberchef" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef-example"><a class="header" href="#cyberchef-example">Cyberchef Example</a></h1>
-<p>Here's an example:</p>
-<p><img src="tools/cyberchef1.png" alt="beginning screen of cyberchef" /></p>
-<p>On the left you will find a palette with all the different operations possible. You will drag those onto the <strong>Recipe</strong> panel and that will operate on the <strong>Input</strong>, producing your <strong>Output</strong>.</p>
-<p>For example, let's say we have the bytes:</p>
-<pre><code>\x43\x79\x62\x65\x72\x63\x68\x65\x66\x20\x69\x73\x20\x61\x77\x65\x73\x6f\x6d\x65
-</code></pre>
-<p>Go ahead and copy those bytes into the <strong>Input</strong> panel of Cyberchef.</p>
-<p><img src="tools/cyberchef2.png" alt="input section of cyberchef" /></p>
-<p>Now go over to the left-most palette and search for <strong>hex</strong> since these look like hexadecimal bytes.</p>
-<p>Select <strong>From Hex</strong> and drag it on to the <strong>Recipe</strong> panel.</p>
-<p><img src="tools/cyberchef3.png" alt="recipe section of cyberchef" /></p>
-<p>This was a super easy one to solve.</p>
-<p><img src="tools/cyberchef4.png" alt="cyberchef" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="building-recipes-in-cyberchef"><a class="header" href="#building-recipes-in-cyberchef">Building recipes in Cyberchef</a></h1>
-<p>Let's say we find the following message when reverse engineering a binary.</p>
-<pre><code>ttmq3a2X8YKp2qmDp8Kr2avPu4O9wrOCqcyqzraSqJCR45zsk8qK7urJqQ==
-</code></pre>
-<p>We know from inspecting the executable there is an XOR binary operation to obfuscate the text. But our keen eyes notice this is a Base64 encoded string.</p>
-<p>Build a recipe that:</p>
-<ol>
-<li>Decodes the Base64 encoded string.</li>
-<li>Decrypts that string using XOR decryption. Unfortunately we only know that the key used for encryption is 2 bytes in size. You will need to brute force it. HINT: We believe it is an <code>http</code> string.</li>
-</ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
-<p>Python is a great tool for ethical hacking! It's ubiquitous, easy to work with, and you can write up a script quickly.</p>
-<p>Check out the next few sections for interesting things you can do with Python.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-python"><a class="header" href="#interactive-python">Interactive Python</a></h1>
-<p>While many courses teach you to write Python scripts, don't forget that you can work with Python in an interactive manner. This can be done on the command line or through what is called an interactive Python notebook (.ipynb file extension).</p>
-<p>My preferred method for quick work in Python is <a href="https://colab.research.google.com">Google Colab</a>, which is free with a Google account.</p>
-<p>Open a <em>New notebook</em> from the <strong>File</strong> menu:</p>
-<p><img src="Python/welcomecolab.png" alt="Google Colab example image" /></p>
-<p>There's nothing to configure or do... just start typing your code in the code block.</p>
-<p><img src="Python/colab1.png" alt="Google Colab example image" /></p>
-<p>And then click the play button to execute that code block. A green checkmark shows that it executed properly.</p>
-<p><img src="Python/colab2.png" alt="Google Colab example image" /></p>
-<p>On the left side, you will see a toolbar. If you select the {x} button it will pull up the <em>Variable inspector</em> and you can see defined variables and their values.</p>
-<p><img src="Python/colab3.png" alt="Google Colab example image" /></p>
-<p><strong>IMPORTANT</strong> This is Python running in the cloud. When you are done with this instance it will be wiped and given to someone else. As such, be sure to save your data. Your work, however, is continuously being saved by Colab. If you look at the <em>File</em> menu, you will also see options for saving your notebook in Google Drive or Github, or you can download it to your host.</p>
-<p>You can pull files into your Python script from your Google drive or, more easily, by clicking on the folder icon on the left. Use the upload button or simply drag files into this mini file manager.</p>
-<p><img src="Python/colabfiles1.png" alt="Google Colab example image" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="extending-colab"><a class="header" href="#extending-colab">Extending Colab</a></h1>
-<p>Let's say I want to use a library that is not pre-installed on Colab. For example, I want to use the pwntools library to help with a binary CTF challenge. But I run into this issue when I try the import:</p>
-<p><img src="Python/colabimportfail.png" alt="colab failed import" /></p>
-<p>You can install pip packages by using the following command:</p>
-<pre><code>!pip install -q package_name
-</code></pre>
-<p>where the -q option means a quiet install.</p>
-<p>And there we go! Package is now installed and my Colab instance is that much more powerful!</p>
-<p><img src="Python/colabimportfail2.png" alt="colab failed import" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="single-line-python-scripts"><a class="header" href="#single-line-python-scripts">Single Line Python Scripts</a></h1>
-<p>Did you know you can run single line Python scripts from the command line using the -c argument?</p>
-<p>Try the following:</p>
-<pre><code>python -c "print('A'*46)"
-</code></pre>
-<p>Output</p>
-<pre><code>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</code></pre>
-<p>Single line program to create 46 A characters. But why?</p>
-<p>When we get around to creating buffer overflows, keep this tool in mind. We often need to create a long string that fills up a buffer and then injects characters beyond it.</p>
-<p>For example, I could fill up the buffer with a 46 'A' characters and then start injecting additional hex characters I want using this simple command line:</p>
-<pre><code>python -c "print('A'*46 + '\xd0\x8f\x04\x08')"
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ultra-simple-web-file-sharing-using-python"><a class="header" href="#ultra-simple-web-file-sharing-using-python">Ultra simple web file sharing using Python</a></h1>
-<p>Need to share files quickly? Python has your back.</p>
-<p>Navigate to the folder where your file, called <code>filename</code> is located. Note the IP address of the computer and then run:</p>
-<pre><code>python -m http.server 9999
-</code></pre>
-<p>This will create an http instance at port 9999 capable of serving files located in that directory.</p>
-<p>From a different machine, connect to it through a browser or simply use wget.</p>
-<pre><code>wget x.x.x.x:9999/filename
-</code></pre>
-<p>where x.x.x.x is the IP address of your HTTP server.</p>
-<p>Note: This is an unencrypted HTTP stream. Be cognizant of the files you transfer over this stream as they will be readily visible.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vpns"><a class="header" href="#vpns">VPNs</a></h1>
-<p>Let's lay out the following scenario:</p>
-<p>You have been given permission to assess a specific asset for vulnerabilities, and this asset is connected to the internet. You scan the asset for open ports and find a web server running on port 80. You fire up <a href="https://github.com/OJ/gobuster">gobuster</a> to identify potential endpoints on the website.</p>
-<p><em>WARNING: Network traffic of this sort is associated with threat actors. There is a real possibility that your employer or ISP will flag your activities as malicious and take action.</em></p>
-<p>To remedy this, most CTF labs and cyber ranges will house their vulnerable assets on internal, protected networks. Your network traffic is tunneled through a Virtual Private Network (VPN) while traversing the open internet, only emerging on that protected network. Not only are the vulnerable assets protected, your malicious looking traffic is obscured from the public internet.</p>
-<p>In Kali Linux, you can establish VPN connections at the top right corner of the screen.</p>
-<p><img src="tools/kalivpn.png" alt="Image of VPN connection in Kali Linux" /></p>
-<p>You will need the VPN information (host name, port, etc.) from the lab manager. This may come in the form of a file that you import.</p>
-<p><em>WARNING: Most VPNs of this sort are classified as SPLIT TUNNEL networks. Only traffic destined for the private network is tunneled. <strong>All other traffic is sent normally.</strong> Be sure that activities like port scanning, vulnerability scanning, endpoint enumeration, etc. are done only on assets that are part of the private network.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse140-practical-security-i"><a class="header" href="#welcome-to-csse140-practical-security-i">Welcome to CSSE140: Practical Security I</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse141-practical-security-ii"><a class="header" href="#welcome-to-csse141-practical-security-ii">Welcome to CSSE141: Practical Security II</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse141"><a class="header" href="#welcome-to-csse141">Welcome to CSSE141</a></h1>
@@ -1099,6 +798,51 @@ You called the program with 1 options. They are:
 0x10x10239d9100x16da6f7200x20x16da6f7000x19f403f280x00x00x0
 </code></pre>
 <p>And just like that we start dumping memory!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="injections"><a class="header" href="#injections">Injections</a></h1>
+<p>User input is always dangerous! Malicious actors will attempt to find and exploit any possible vulnerabilities your code.</p>
+<p>In this course we will look at two different types of user inputs that lead to undesired program execution:</p>
+<ul>
+<li>Abusing unsanitized SQL statements to leak information or bypass authentication.</li>
+<li>Causing remote code execution in websites that rely on templates to generate content.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-injection"><a class="header" href="#sql-injection">SQL Injection</a></h1>
+<p>Many systems rely on databases as their backend. Take for instance an online store that sells items through a website. The website relies on databases to store not only pricing information, inventory status, and shipping info, but also user account information such as addresses, usernames, and passwords. The standard language used to communicate with many relational databases is known as Structured Query Language, aka SQL.</p>
+<p>The problem comes when the SQL query is based on elements of user input. The designers may have intended the user to provide details crucial to an inventory search, but threat actors have included portions of a SQL query itself to steer execution in their desired direction.</p>
+<p>The classic example is evaluating username and password by simply pulling them from a database. A query might look like</p>
+<pre><code class="language-SQL">SELECT * FROM user_db WHERE username = fred AND password = rightsaidfred
+</code></pre>
+<p>A developer could build this query in a naive way by reading in a string from the user and storing it in variables, say <code>userid_input</code> and <code>password_input</code>.</p>
+<p>Then</p>
+<pre><code>sql_string = "SELECT * FROM user_db WHERE username =  " + userid_input + " AND password = " + password_input;
+</code></pre>
+<p>The string above would allow malicious users to inject SQL commands of their own. For example, if the user knew a username and then entered <code>something OR 1 = 1</code> for the password, the query would then be:</p>
+<pre><code>sql_string = "SELECT * FROM user_db WHERE username = fred AND password = something OR 1 = 1";
+</code></pre>
+<p>where the OR statement is paired with something that is always true. We know that the password <code>something</code> is incorrect, but the addition of the <code>OR 1 = 1</code> would cause this portion of the statement to always evaluate TRUE, thereby bypassing the password check entirely!!!</p>
+<hr />
+<p>Most CTF players will develop cheat sheets on common SQL injections, especially since there can be subtle differences in how different database vendors handle queries.</p>
+<p><a href="https://exploit-notes.hdks.org/exploit/web/security-risk/sql-injection-cheat-sheet/">Example SQL Injection cheat sheet.</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="server-side-template-injection"><a class="header" href="#server-side-template-injection">Server Side Template Injection</a></h1>
+<p>Frameworks like Flask and Django (Python), Liquid (Ruby), Handlebars (NodeJS), etc. are ways of extending traditional programming languages into interactive web applications.</p>
+<p>Vulnerabilities can occur when user input is not sanitized. These are especially dangerous because they allow remote code execution (RCE).</p>
+<hr />
+<p>Example:</p>
+<p>Flask (a Python web framework) uses double curly braces <code>{{}}</code> to mix Python code into an HTML page. A malicious user could post <code>{{ 7*7 }}</code> to see if the answer 49 appears anywhere in the resulting webpage, illustrating that RCE is possible.</p>
+<p>Here's an example login page:
+<img src="injections/.//flask1.png" alt="Login page" /></p>
+<p>A malicious user, knowing the framework, could attempt an exploit:</p>
+<p><img src="injections/.//flask2.png" alt="Login page with SSTI" /></p>
+<hr />
+<ol>
+<li>
+<p>Initial Recon:</p>
+<p>Determine which framework (Handlebars, Flask, etc.) is being used. One possibility is to send all the most common framework escape characters to see if any trigger a response. An example of this would be:</p>
+<p><code>${{&lt;%[%'"}}%\.</code></p>
+</li>
+<li>
+<p>After elucidating which web framework, consult an <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection">SSTI cheat sheet like this</a> or use an automated tool like <a href="https://github.com/epinna/tplmap/blob/master/burp_extension/README.md">this plugin</a> for Burp Suite.</p>
+</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="sliver-c2-platform-and-kali"><a class="header" href="#sliver-c2-platform-and-kali">sliver C2 platform and Kali</a></h1>
 <h2 id="pieces-of-a-typical-command-and-control-attack"><a class="header" href="#pieces-of-a-typical-command-and-control-attack">Pieces of a typical Command and Control attack</a></h2>
 <p>There are three pieces to a typical C2 setup:</p>
@@ -1164,51 +908,307 @@ You called the program with 1 options. They are:
 <div style="break-before: page; page-break-before: always;"></div><h3 id="sliver-part-2"><a class="header" href="#sliver-part-2">Sliver part 2.</a></h3>
 <h2 id="how-does-c2-work"><a class="header" href="#how-does-c2-work">How does C2 work?</a></h2>
 <p>Start Wireshark and begin capturing traffic between your server and the implant. What do you see?</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="injections"><a class="header" href="#injections">Injections</a></h1>
-<p>User input is always dangerous! Malicious actors will attempt to find and exploit any possible vulnerabilities your code.</p>
-<p>In this course we will look at two different types of user inputs that lead to undesired program execution:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ctf-tools"><a class="header" href="#ctf-tools">CTF Tools</a></h1>
+<p>Over the next few pages we will take a look at the tools we will use in this course.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="virtual-machines"><a class="header" href="#virtual-machines">Virtual Machines</a></h1>
+<p>Many of us run our CTF/penetration testing tools inside a <em>virtual</em> machine instead of on our desktop.</p>
+<p>This helps because we can:</p>
 <ul>
-<li>Abusing unsanitized SQL statements to leak information or bypass authentication.</li>
-<li>Causing remote code execution in websites that rely on templates to generate content.</li>
+<li>keep our own machines free of extraneous tools</li>
+<li>protect our machines from software of unknown origin</li>
+<li>run tools that are not native to our default OS</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-injection"><a class="header" href="#sql-injection">SQL Injection</a></h1>
-<p>Many systems rely on databases as their backend. Take for instance an online store that sells items through a website. The website relies on databases to store not only pricing information, inventory status, and shipping info, but also user account information such as addresses, usernames, and passwords. The standard language used to communicate with many relational databases is known as Structured Query Language, aka SQL.</p>
-<p>The problem comes when the SQL query is based on elements of user input. The designers may have intended the user to provide details crucial to an inventory search, but threat actors have included portions of a SQL query itself to steer execution in their desired direction.</p>
-<p>The classic example is evaluating username and password by simply pulling them from a database. A query might look like</p>
-<pre><code class="language-SQL">SELECT * FROM user_db WHERE username = fred AND password = rightsaidfred
+<p>Before you can run a virtual machine, known as the <strong>guest</strong>, you need to set up the <strong>host</strong> machine as a <strong>hypervisor</strong>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hypervisors"><a class="header" href="#hypervisors">Hypervisors</a></h1>
+<p>Hypervisors manage virtual machines and allow them access to your hardware. A hypervisor will allow you to control how much memory, disk space, and CPU time the guest is able to have from the host machine. The most common hypervisors for penetration testing or CTF competitions are:</p>
+<ul>
+<li>VMware</li>
+<li>VirtualBox</li>
+<li>Hyper-V</li>
+<li>KVM / QEMU</li>
+</ul>
+<p>I find hypervisors to be a matter of personal preference -- each has a set of pros/cons. Some thoughts:</p>
+<h2 id="vmware"><a class="header" href="#vmware">VMware:</a></h2>
+<ul>
+<li>The flagship VMware hypervisors are run on the largest servers in the world and are hugely expensive but immensely capable. The company provides some of this functionality in desktop versions, VMware Workstation (Windows/Linux) and VMware Fusion (Mac). Previously, these applications required paid licenses, but recent changes from Broadcom allow us to use these for free. These are my personal choice. High quality networking options, display tuning, reliable copy-paste, easy snapshots, etc. <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">Download here -- requires you to create a Broadcom account.</a>. Installation instructions follow on the next few pages of this site.</li>
+</ul>
+<h2 id="virtualbox"><a class="header" href="#virtualbox">VirtualBox</a></h2>
+<ul>
+<li>Available <a href="https://www.virtualbox.org/">here</a> Sort of the opposite of VMware... much of it is open source (GPLv2 license) and free. Very popular for hackers because of this. I wish it had better documentation and advanced networking support, but you can't beat the price.</li>
+</ul>
+<h2 id="hyper-v"><a class="header" href="#hyper-v">Hyper-V</a></h2>
+<ul>
+<li>Developed by Microsoft and available as a built-in service in many versions of Windows, this is an easy one to use for many people. Growing in popularity every year. Learn how to enable Hyper-V <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>. With some configuration tweaks you can use Enhanced Session Mode which enables a better graphical experience along with a working clipboard, complete with file transfer.</li>
+</ul>
+<h2 id="kvmqemu"><a class="header" href="#kvmqemu">KVM/QEMU</a></h2>
+<ul>
+<li>Great choice if you are on a Linux distro. Instructions for enabling on Debian distros <a href="https://wiki.debian.org/KVM">here</a>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-vmware-workstation-or-fusion"><a class="header" href="#installing-vmware-workstation-or-fusion">Installing VMware Workstation or Fusion</a></h1>
+<p>The following instructions will help you install VMware Workstation on Windows (standard RHIT setup).</p>
+<h2 id="acquire-vmware"><a class="header" href="#acquire-vmware">Acquire VMware</a></h2>
+<p><em>Notation: Workstation refers to the product on Windows or Linux. Fusion is the product on MacOS.</em></p>
+<p><em>Workstation and Workstation Pro or Fusion and Fusion Pro used to be different licenses. Broadcom now allows everyone to use Pro</em></p>
+<p>Browse to the <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">DOWNLOAD NOW</a> . You will need to create an account with Broadcom to complete this.</p>
+<p>Once downloaded
+<a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10">Installation video</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-as-a-virtual-machine"><a class="header" href="#installing-kali-linux-as-a-virtual-machine">Installing Kali Linux as a Virtual Machine</a></h1>
+<h2 id="1-download-the-kali-linux-iso"><a class="header" href="#1-download-the-kali-linux-iso">1. Download the Kali Linux ISO.</a></h2>
+<p>Get it <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a></p>
+<p>Standard users will want the <strong>x86_64</strong> image.
+<img src="tools/./kali-iso.png" alt="alt text" /></p>
+<h2 id="2-install-kali-linux-as-a-vm"><a class="header" href="#2-install-kali-linux-as-a-vm">2. Install Kali Linux as a VM</a></h2>
+<p>Installation video for Kali Linux on VMware Workstation / Fusion can be found <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dcb021-b1f2-41c9-9f63-b33f00f41236">here</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vm-snapshots"><a class="header" href="#vm-snapshots">VM Snapshots</a></h1>
+<p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time. You can then roll back changes to a previous known state whenever needed.</p>
+<p>For CTF competitions, a workflow I see quite a bit is:</p>
+<ol>
+<li>Create a VM and tweak with all the tools you will need.</li>
+<li>Snapshot the VM.</li>
+<li>Start a challenge. This may require you to install new software, add new packages to Python, add temporary entries to /etc/hosts, download binaries for reverse engineering, etc.</li>
+<li>Complete the challenge.</li>
+<li>Rollback the VM to the pre-challenge snapshot. On to the next challenge!</li>
+</ol>
+<p>On Hyper-V, snapshots are known as <strong>Checkpoints</strong>.</p>
+<p>On Hyper-V Manager, right click your VM and select Checkpoint.
+<img src="tools/checkpoint.png" alt="Checkpointing Image" /></p>
+<p>You will thank yourself later if you rename the checkpoint to something more descriptive.</p>
+<p><img src="tools/checkpoint2.png" alt="Checkpointing Image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-shared-file-space-between-your-host-and-guest-vm"><a class="header" href="#creating-a-shared-file-space-between-your-host-and-guest-vm">Creating a shared file space between your host and guest (VM).</a></h1>
+<h2 id="warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files"><a class="header" href="#warning-one-of-the-main-reasons-we-run-vms-is-to-create-isolation-between-our-work-machine-and-potentially-malicious-code-think-hard-about-the-implications-of-allowing-a-guest-vm-access-to-some-of-your-files">Warning: One of the main reasons we run VMs is to create isolation between our work machine and potentially malicious code. Think hard about the implications of allowing a guest VM access to some of your files.</a></h2>
+<p>To create a shared file space between your host and VM, you can use the Settings area of VMware Player and select "Shared Folders".</p>
+<p><img src="tools/vmware-shared.png" alt="image that shows vmware shared folder settings" /></p>
+<p>On your Kali VM, complete the following:</p>
+<pre><code>sudo mkdir /mnt/shared
 </code></pre>
-<p>A developer could build this query in a naive way by reading in a string from the user and storing it in variables, say <code>userid_input</code> and <code>password_input</code>.</p>
-<p>Then</p>
-<pre><code>sql_string = "SELECT * FROM user_db WHERE username =  " + userid_input + " AND password = " + password_input;
+<pre><code>sudo /usr/bin/vmhgfs-fuse .host:/shared /mnt/shared -o subtype=vmhgfs-fuse,allow_other
 </code></pre>
-<p>The string above would allow malicious users to inject SQL commands of their own. For example, if the user knew a username and then entered <code>something OR 1 = 1</code> for the password, the query would then be:</p>
-<pre><code>sql_string = "SELECT * FROM user_db WHERE username = fred AND password = something OR 1 = 1";
+<p>Tweak the line above if you named your share something other than <code>shared</code>. A shared file space is now available at /mnt/shared on your VM.</p>
+<p>On Windows:</p>
+<p><img src="tools/vmshared-win.png" alt="Windows file explorer screenshot" /></p>
+<p>On Kali:</p>
+<p><img src="tools/vmshared-kali.png" alt="Windows file explorer screenshot" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-linux"><a class="header" href="#kali-linux">Kali Linux</a></h1>
+<p>The most famous distribution of Linux used by hackers worldwide. The main website is <a href="https://www.kali.org/">here</a>.</p>
+<p>Note that Kali is based on Debian Linux, so you can find tips on setup, package management, etc. by searching for Kali, Debian, or even Ubuntu.</p>
+<p>From the Kali website:</p>
+<p><code>The Kali Linux distribution is based on Debian Testing. Therefore, most of the Kali packages are imported, as-is, from the Debian repositories. In some cases, newer packages may be imported from Debian Unstable or Debian Experimental, either to improve user experience, or to incorporate needed bug fixes.</code></p>
+<p>I prefer create a VM from scratch using an ISO from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</p>
+<p>If you have a working hypervisor and are on PC, you can also grab a pre-built VM image from <a href="https://www.kali.org/get-kali/#kali-virtual-machines">here</a></p>
+<p>As of August 2023, the most recent version is 2023.3</p>
+<p><img src="tools/banner-2023.3-release.jpg" alt="Kali Linux release banner" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-on-hyper-v"><a class="header" href="#installing-kali-linux-on-hyper-v">Installing Kali Linux on Hyper-V</a></h1>
+<p>For this class I would like us to use Hyper-V as our hypervisor of choice. We will be working with the following:</p>
+<ul>
+<li>Kali under Hyper-V with Enhanced Session Mode</li>
+<li>Windows Dev images for some proof-of-concept work. Info <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here.</a></li>
+<li>Windows Sandbox mode <a href="https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-overview">Link to Sandbox mode.</a></li>
+</ul>
+<p>Contact me if you are planning to use a Mac or Linux laptop for this course.</p>
+<p>Ready to install Kali on Hyper-V? Follow these instructions:</p>
+<ol>
+<li>Enable Hyper-V if you haven't already. Instructions are <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">here</a>.</li>
+<li>Enable Enhanced Session Mode in Hyper-V. Follow <a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect">this guide</a> for instructions.</li>
+<li>Download an installation ISO (not pre-built VM) from <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a>.</li>
+<li>Set up a Hyper-V VM for a Kali install. Check out this guide <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-vm/">here</a>.</li>
+<li>Install Kali into the new VM. Instructions <a href="https://www.kali.org/docs/installation/hard-disk-install/">here</a>.</li>
+<li>Follow <a href="https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanced-session-mode/">these instructions</a> on how to make Enhanced Session Mode active. This will allow you to use the clipboard effectively.</li>
+<li>Use your newly found Copy/Paste abilities to transfer a new desktop wallpaper to your Kali instance, for example from <a href="https://github.com/dorianpro/kali-linux-wallpapers">here</a>.</li>
+</ol>
+<p>At this point, you should have Kali in a beautifully rendered screen with a functioning clipboard.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kali-tweaks"><a class="header" href="#kali-tweaks">kali-tweaks</a></h1>
+<p>Be sure to check out the <code>kali-tweaks</code> command. You will find some nice customization options here.</p>
+<p><img src="tools/kali-tweaks.png" alt="kali-tweaks menu" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ssh-into-kali"><a class="header" href="#ssh-into-kali">SSH into Kali</a></h1>
+<p>Since many of the tools you will use on Kali are command line, you don't always need to use the graphical user interface. Sometimes it's easiest to use a terminal and SSH into your Kali instance.</p>
+<p>Out of the box, SSH connections to your Kali box are disabled. To enable them, complete the following on your VM:</p>
+<p>Install the OpenSSH server.</p>
+<pre><code>sudo apt install openssh-server
 </code></pre>
-<p>where the OR statement is paired with something that is always true. We know that the password <code>something</code> is incorrect, but the addition of the <code>OR 1 = 1</code> would cause this portion of the statement to always evaluate TRUE, thereby bypassing the password check entirely!!!</p>
-<hr />
-<p>Most CTF players will develop cheat sheets on common SQL injections, especially since there can be subtle differences in how different database vendors handle queries.</p>
-<p><a href="https://exploit-notes.hdks.org/exploit/web/security-risk/sql-injection-cheat-sheet/">Example SQL Injection cheat sheet.</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="server-side-template-injection"><a class="header" href="#server-side-template-injection">Server Side Template Injection</a></h1>
-<p>Frameworks like Flask and Django (Python), Liquid (Ruby), Handlebars (NodeJS), etc. are ways of extending traditional programming languages into interactive web applications.</p>
-<p>Vulnerabilities can occur when user input is not sanitized. These are especially dangerous because they allow remote code execution (RCE).</p>
-<hr />
-<p>Example:</p>
-<p>Flask (a Python web framework) uses double curly braces <code>{{}}</code> to mix Python code into an HTML page. A malicious user could post <code>{{ 7*7 }}</code> to see if the answer 49 appears anywhere in the resulting webpage, illustrating that RCE is possible.</p>
-<p>Here's an example login page:
-<img src="injections/.//flask1.png" alt="Login page" /></p>
-<p>A malicious user, knowing the framework, could attempt an exploit:</p>
-<p><img src="injections/.//flask2.png" alt="Login page with SSTI" /></p>
-<hr />
+<p>Enable the SSH service.</p>
+<pre><code>sudo systemctl enable ssh.service 
+</code></pre>
+<p>Now start the SSH service.</p>
+<pre><code>sudo systemctl start ssh.service
+</code></pre>
+<p>Finally, record the IP address of your box -- usually located at eth0 for a VM with one network interface.</p>
+<pre><code>ip a
+</code></pre>
+<p><img src="tools/ipaddr.png" alt="image" /></p>
+<p>In the above case, the address of your VM is <code>192.168.46.91</code> and your username is <code>kali</code>.</p>
+<p>You should be able to log in from your desktop now using:</p>
+<pre><code>ssh kali@192.168.46.9
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-quick-windows-machine-for-analysis-work"><a class="header" href="#creating-a-quick-windows-machine-for-analysis-work">Creating a quick Windows Machine for Analysis Work</a></h1>
+<p>Sometimes you need to create a quick Windows VM for analysis work. Here's one way:</p>
+<p>In Hyper-V, select <strong>Quick Create</strong> from the <strong>Actions</strong> panel.</p>
+<p><img src="tools/winbox.png" alt="Hyper-V " /></p>
+<p>Then select the <strong>Windows 11 dev environment</strong>. This will create a Windows VM that is ready to go. The best part? All of the Windows stuff (Xbox Live, OneDrive, etc.) that requires you to sign in with an account has been disabled.</p>
+<p><img src="tools/winbox2.png" alt="Hyper-V " /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-and-gdb"><a class="header" href="#build-tools-and-gdb">Build Tools and GDB</a></h1>
+<p>After creating your Kali Linux VM you should consider installing the common build tools:</p>
+<p><code>sudo apt install build-essential</code></p>
+<p>This should install gcc, g++, make, and several others.</p>
+<p>To add support for 32-bit binaries, which are still common in CTFs, do the following:</p>
+<p><code>sudo apt install gcc-multilib g++-multilib</code></p>
+<p>Finally, install the GNU Project Debugger, gdb:</p>
+<p><code>sudo apt install gdb</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra"><a class="header" href="#ghidra">Ghidra</a></h1>
+<p>Ghidra is an open source tool from the National Security Agency (yes, that NSA!) that we use for reverse engineering.</p>
+<p>Ghidra is a Java app, so you need a working JDK before you can run it.</p>
 <ol>
 <li>
-<p>Initial Recon:</p>
-<p>Determine which framework (Handlebars, Flask, etc.) is being used. One possibility is to send all the most common framework escape characters to see if any trigger a response. An example of this would be:</p>
-<p><code>${{&lt;%[%'"}}%\.</code></p>
+<p>On a Linux machine, you can check your Java version with:</p>
+<pre><code>java -version
+</code></pre>
 </li>
 <li>
-<p>After elucidating which web framework, consult an <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection">SSTI cheat sheet like this</a> or use an automated tool like <a href="https://github.com/epinna/tplmap/blob/master/burp_extension/README.md">this plugin</a> for Burp Suite.</p>
+<p>Look for the version output, something like:
+<code>openjdk version "17.0.8" 2023-07-18</code>
+Be sure that you have version 17 or higher.</p>
+</li>
+<li>
+<p>If you need to install Java, you can use the following command on Kali Linux.</p>
+<pre><code>sudo apt install default-jdk
+</code></pre>
+</li>
+<li>
+<p>After you <a href="https://ghidra-sre.org/">download Ghidra</a>, there isn't a traditional installer. Instead, do the following:</p>
+<ul>
+<li>
+<p>Unzip the file. In the unzipped archive, you will find a script to start Ghidra.</p>
+<ul>
+<li>On UNIX-like systems, run the file</li>
+</ul>
+<pre><code>./ghidraRun
+</code></pre>
+<ul>
+<li>On Windows, run the file:</li>
+</ul>
+<pre><code>ghidraRun.bat
+</code></pre>
+</li>
+</ul>
 </li>
 </ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ghidra-not-working"><a class="header" href="#ghidra-not-working">Ghidra not working?</a></h1>
+<p>If you find that parts of Ghidra are not working out of the box on your Kali instance (especially Kali on ARM), try the following:</p>
+<ol>
+<li>
+<p>Install sdkman</p>
+<pre><code>sudo curl -s "https://get.sdkman.io" | bash
+</code></pre>
+</li>
+<li>
+<p>Restart your terminal shell.</p>
+</li>
+<li>
+<p>Install gradle</p>
+<pre><code>sdk install gradle
+</code></pre>
+</li>
+<li>
+<p>cd into your Ghidra directory.</p>
+</li>
+<li>
+<p>cd into the <code>support</code> directory.</p>
+</li>
+<li>
+<p>Run</p>
+<pre><code>./buildNatives
+</code></pre>
+</li>
+<li>
+<p>Now try Ghidra.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef"><a class="header" href="#cyberchef">Cyberchef</a></h1>
+<p>Cyberchef is a tool put out by the GCHQ which is "the UK's intelligence, security and cyber agency". It's a web-app that aims to be your go-to tool for hacking data manipulation.</p>
+<p>You can find it on the web <a href="https://gchq.github.io/CyberChef/">here</a> or inside many infosec packages like Security Onion.</p>
+<p><img src="tools/cyberchef1.png" alt="Starting image of Cyberchef" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cyberchef-example"><a class="header" href="#cyberchef-example">Cyberchef Example</a></h1>
+<p>Here's an example:</p>
+<p><img src="tools/cyberchef1.png" alt="beginning screen of cyberchef" /></p>
+<p>On the left you will find a palette with all the different operations possible. You will drag those onto the <strong>Recipe</strong> panel and that will operate on the <strong>Input</strong>, producing your <strong>Output</strong>.</p>
+<p>For example, let's say we have the bytes:</p>
+<pre><code>\x43\x79\x62\x65\x72\x63\x68\x65\x66\x20\x69\x73\x20\x61\x77\x65\x73\x6f\x6d\x65
+</code></pre>
+<p>Go ahead and copy those bytes into the <strong>Input</strong> panel of Cyberchef.</p>
+<p><img src="tools/cyberchef2.png" alt="input section of cyberchef" /></p>
+<p>Now go over to the left-most palette and search for <strong>hex</strong> since these look like hexadecimal bytes.</p>
+<p>Select <strong>From Hex</strong> and drag it on to the <strong>Recipe</strong> panel.</p>
+<p><img src="tools/cyberchef3.png" alt="recipe section of cyberchef" /></p>
+<p>This was a super easy one to solve.</p>
+<p><img src="tools/cyberchef4.png" alt="cyberchef" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="building-recipes-in-cyberchef"><a class="header" href="#building-recipes-in-cyberchef">Building recipes in Cyberchef</a></h1>
+<p>Let's say we find the following message when reverse engineering a binary.</p>
+<pre><code>ttmq3a2X8YKp2qmDp8Kr2avPu4O9wrOCqcyqzraSqJCR45zsk8qK7urJqQ==
+</code></pre>
+<p>We know from inspecting the executable there is an XOR binary operation to obfuscate the text. But our keen eyes notice this is a Base64 encoded string.</p>
+<p>Build a recipe that:</p>
+<ol>
+<li>Decodes the Base64 encoded string.</li>
+<li>Decrypts that string using XOR decryption. Unfortunately we only know that the key used for encryption is 2 bytes in size. You will need to brute force it. HINT: We believe it is an <code>http</code> string.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<p>Python is a great tool for ethical hacking! It's ubiquitous, easy to work with, and you can write up a script quickly.</p>
+<p>Check out the next few sections for interesting things you can do with Python.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-python"><a class="header" href="#interactive-python">Interactive Python</a></h1>
+<p>While many courses teach you to write Python scripts, don't forget that you can work with Python in an interactive manner. This can be done on the command line or through what is called an interactive Python notebook (.ipynb file extension).</p>
+<p>My preferred method for quick work in Python is <a href="https://colab.research.google.com">Google Colab</a>, which is free with a Google account.</p>
+<p>Open a <em>New notebook</em> from the <strong>File</strong> menu:</p>
+<p><img src="Python/welcomecolab.png" alt="Google Colab example image" /></p>
+<p>There's nothing to configure or do... just start typing your code in the code block.</p>
+<p><img src="Python/colab1.png" alt="Google Colab example image" /></p>
+<p>And then click the play button to execute that code block. A green checkmark shows that it executed properly.</p>
+<p><img src="Python/colab2.png" alt="Google Colab example image" /></p>
+<p>On the left side, you will see a toolbar. If you select the {x} button it will pull up the <em>Variable inspector</em> and you can see defined variables and their values.</p>
+<p><img src="Python/colab3.png" alt="Google Colab example image" /></p>
+<p><strong>IMPORTANT</strong> This is Python running in the cloud. When you are done with this instance it will be wiped and given to someone else. As such, be sure to save your data. Your work, however, is continuously being saved by Colab. If you look at the <em>File</em> menu, you will also see options for saving your notebook in Google Drive or Github, or you can download it to your host.</p>
+<p>You can pull files into your Python script from your Google drive or, more easily, by clicking on the folder icon on the left. Use the upload button or simply drag files into this mini file manager.</p>
+<p><img src="Python/colabfiles1.png" alt="Google Colab example image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="extending-colab"><a class="header" href="#extending-colab">Extending Colab</a></h1>
+<p>Let's say I want to use a library that is not pre-installed on Colab. For example, I want to use the pwntools library to help with a binary CTF challenge. But I run into this issue when I try the import:</p>
+<p><img src="Python/colabimportfail.png" alt="colab failed import" /></p>
+<p>You can install pip packages by using the following command:</p>
+<pre><code>!pip install -q package_name
+</code></pre>
+<p>where the -q option means a quiet install.</p>
+<p>And there we go! Package is now installed and my Colab instance is that much more powerful!</p>
+<p><img src="Python/colabimportfail2.png" alt="colab failed import" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="single-line-python-scripts"><a class="header" href="#single-line-python-scripts">Single Line Python Scripts</a></h1>
+<p>Did you know you can run single line Python scripts from the command line using the -c argument?</p>
+<p>Try the following:</p>
+<pre><code>python -c "print('A'*46)"
+</code></pre>
+<p>Output</p>
+<pre><code>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</code></pre>
+<p>Single line program to create 46 A characters. But why?</p>
+<p>When we get around to creating buffer overflows, keep this tool in mind. We often need to create a long string that fills up a buffer and then injects characters beyond it.</p>
+<p>For example, I could fill up the buffer with a 46 'A' characters and then start injecting additional hex characters I want using this simple command line:</p>
+<pre><code>python -c "print('A'*46 + '\xd0\x8f\x04\x08')"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ultra-simple-web-file-sharing-using-python"><a class="header" href="#ultra-simple-web-file-sharing-using-python">Ultra simple web file sharing using Python</a></h1>
+<p>Need to share files quickly? Python has your back.</p>
+<p>Navigate to the folder where your file, called <code>filename</code> is located. Note the IP address of the computer and then run:</p>
+<pre><code>python -m http.server 9999
+</code></pre>
+<p>This will create an http instance at port 9999 capable of serving files located in that directory.</p>
+<p>From a different machine, connect to it through a browser or simply use wget.</p>
+<pre><code>wget x.x.x.x:9999/filename
+</code></pre>
+<p>where x.x.x.x is the IP address of your HTTP server.</p>
+<p>Note: This is an unencrypted HTTP stream. Be cognizant of the files you transfer over this stream as they will be readily visible.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vpns"><a class="header" href="#vpns">VPNs</a></h1>
+<p>Let's lay out the following scenario:</p>
+<p>You have been given permission to assess a specific asset for vulnerabilities, and this asset is connected to the internet. You scan the asset for open ports and find a web server running on port 80. You fire up <a href="https://github.com/OJ/gobuster">gobuster</a> to identify potential endpoints on the website.</p>
+<p><em>WARNING: Network traffic of this sort is associated with threat actors. There is a real possibility that your employer or ISP will flag your activities as malicious and take action.</em></p>
+<p>To remedy this, most CTF labs and cyber ranges will house their vulnerable assets on internal, protected networks. Your network traffic is tunneled through a Virtual Private Network (VPN) while traversing the open internet, only emerging on that protected network. Not only are the vulnerable assets protected, your malicious looking traffic is obscured from the public internet.</p>
+<p>In Kali Linux, you can establish VPN connections at the top right corner of the screen.</p>
+<p><img src="tools/kalivpn.png" alt="Image of VPN connection in Kali Linux" /></p>
+<p>You will need the VPN information (host name, port, etc.) from the lab manager. This may come in the form of a file that you import.</p>
+<p><em>WARNING: Most VPNs of this sort are classified as SPLIT TUNNEL networks. Only traffic destined for the private network is tunneled. <strong>All other traffic is sent normally.</strong> Be sure that activities like port scanning, vulnerability scanning, endpoint enumeration, etc. are done only on assets that are part of the private network.</em></p>
 
                     </main>
 
