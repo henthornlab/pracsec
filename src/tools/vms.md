@@ -7,4 +7,4 @@ This helps because we can:
 * protect our machines from software of unknown origin
 * run tools that are not native to our default OS
 
-Before you can run a virtual machine (the guest), you need to set up the host machine as a hypervisor.
+Before you can run a virtual machine, known as the **guest**, you need to set up the **host** machine as a **hypervisor**.

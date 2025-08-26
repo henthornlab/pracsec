@@ -191,9 +191,9 @@
 <li>protect our machines from software of unknown origin</li>
 <li>run tools that are not native to our default OS</li>
 </ul>
-<p>Before you can run a virtual machine (the guest), you need to set up the host machine as a hypervisor.</p>
+<p>Before you can run a virtual machine, known as the <strong>guest</strong>, you need to set up the <strong>host</strong> machine as a <strong>hypervisor</strong>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hypervisors"><a class="header" href="#hypervisors">Hypervisors</a></h1>
-<p>Hypervisors are the software piece that manage virtual machines and allow them access to your hardware. The most common hypervisors for penetration testing or CTF competitions are:</p>
+<p>Hypervisors manage virtual machines and allow them access to your hardware. A hypervisor will allow you to control how much memory, disk space, and CPU time the guest is able to have from the host machine. The most common hypervisors for penetration testing or CTF competitions are:</p>
 <ul>
 <li>VMware</li>
 <li>VirtualBox</li>
@@ -203,7 +203,7 @@
 <p>I find hypervisors to be a matter of personal preference -- each has a set of pros/cons. Some thoughts:</p>
 <h2 id="vmware"><a class="header" href="#vmware">VMware:</a></h2>
 <ul>
-<li>The flagship VMware hypervisors are run on the largest servers in the world and are hugely expensive and immensely capable. The company provides some of this functionality in desktop versions, VMware Player (Intel/AMD) and VMware Fusion (Mac). While these cost money, they provide them free for non-commercial and academic use. These are my personal choice. High quality networking options, display tuning, snapshots, etc. Fusion (Mac) can be found <a href="https://www.vmware.com/products/fusion/fusion-evaluation.html">here</a> while Player (Intel/AMD) is <a href="https://www.vmware.com/content/vmware/vmware-published-sites/us/products/workstation-player/workstation-player-evaluation.html.html">here</a>.</li>
+<li>The flagship VMware hypervisors are run on the largest servers in the world and are hugely expensive but immensely capable. The company provides some of this functionality in desktop versions, VMware Workstation (Windows/Linux) and VMware Fusion (Mac). Previously, these applications required paid licenses, but recent changes from Broadcom allow us to use these for free. These are my personal choice. High quality networking options, display tuning, reliable copy-paste, easy snapshots, etc. <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">Download here -- requires you to create a Broadcom account.</a>. Installation instructions follow on the next few pages of this site.</li>
 </ul>
 <h2 id="virtualbox"><a class="header" href="#virtualbox">VirtualBox</a></h2>
 <ul>
@@ -217,6 +217,21 @@
 <ul>
 <li>Great choice if you are on a Linux distro. Instructions for enabling on Debian distros <a href="https://wiki.debian.org/KVM">here</a>.</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-vmware-workstation-or-fusion"><a class="header" href="#installing-vmware-workstation-or-fusion">Installing VMware Workstation or Fusion</a></h1>
+<p>The following instructions will help you install VMware Workstation on Windows (standard RHIT setup).</p>
+<h2 id="acquire-vmware"><a class="header" href="#acquire-vmware">Acquire VMware</a></h2>
+<p><em>Notation: Workstation refers to the product on Windows or Linux. Fusion is the product on MacOS.</em></p>
+<p><em>Workstation and Workstation Pro or Fusion and Fusion Pro used to be different licenses. Broadcom now allows everyone to use Pro</em></p>
+<p>Browse to the <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">DOWNLOAD NOW</a> . You will need to create an account with Broadcom to complete this.</p>
+<p>Once downloaded
+<a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10">Installation video</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-kali-linux-as-a-virtual-machine"><a class="header" href="#installing-kali-linux-as-a-virtual-machine">Installing Kali Linux as a Virtual Machine</a></h1>
+<h2 id="1-download-the-kali-linux-iso"><a class="header" href="#1-download-the-kali-linux-iso">1. Download the Kali Linux ISO.</a></h2>
+<p>Get it <a href="https://www.kali.org/get-kali/#kali-installer-images">here</a></p>
+<p>Standard users will want the <strong>x86_64</strong> image.
+<img src="tools/./kali-iso.png" alt="alt text" /></p>
+<h2 id="2-install-kali-linux-as-a-vm"><a class="header" href="#2-install-kali-linux-as-a-vm">2. Install Kali Linux as a VM</a></h2>
+<p>Installation video for Kali Linux on VMware Workstation / Fusion can be found <a href="https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dcb021-b1f2-41c9-9f63-b33f00f41236">here</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vm-snapshots"><a class="header" href="#vm-snapshots">VM Snapshots</a></h1>
 <p>One of the coolest features of VMs is the ability to take "snapshots". You are, in essence, saving the state of a VM at that instant in time. You can then roll back changes to a previous known state whenever needed.</p>
 <p>For CTF competitions, a workflow I see quite a bit is:</p>

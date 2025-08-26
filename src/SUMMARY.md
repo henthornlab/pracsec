@@ -6,6 +6,8 @@
 - [Tools](./tools/tools.md)
     - [Virtual Machines](./tools/vms.md)
         - [Hypervisors](./tools/hypervisors.md)
+        - [Installing VMware](./tools/vmware1.md)
+        - [Installing Kali Linux](./tools/kali-install.md)
         - [Snapshots](./tools/vm-snapshots.md)
         - [Shared Files on VMware](./tools/vm-shared.md)
     - [Kali Linux](./tools/kali.md)
