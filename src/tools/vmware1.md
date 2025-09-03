@@ -10,5 +10,4 @@ The following instructions will help you install VMware Workstation on Windows (
 
 Browse to the [DOWNLOAD NOW](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) . You will need to create an account with Broadcom to complete this.
 
-Once downloaded
-[Installation video](https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10)
+More instructions can be found [in this video.](https://rose-hulman.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ecbe116e-e591-4b99-bcb0-b34200ceee10)
