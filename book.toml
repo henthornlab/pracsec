@@ -3,7 +3,7 @@ authors = ["Dave Henthorn"]
 language = "en"
 multilingual = false
 src = "src"
-title = "PracSec@RHIT"
+title = "CompSec@RHIT"
 
 [build]
 build-dir = "docs"  

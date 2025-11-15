@@ -1,8 +1,11 @@
 # Installing VMware Workstation or Fusion
 
-The following instructions will help you install VMware Workstation on Windows (standard RHIT setup). 
+### NOTE: Students in CSSE14x: We assume you will be running the standard RHIT laptop and therefore provide resources for x64 based machines. Students in higher level courses are encouraged to use x64 machines, but may choose to use a different ISA. It becomes your responsibility to handle any incompatibilties that may arise, though.
 
-## Acquire VMware
+
+## The following instructions will help you install VMware Workstation on Windows (standard RHIT setup). 
+
+### Acquire VMware
 
 *Notation: Workstation refers to the product on Windows or Linux. Fusion is the product on MacOS.*
 

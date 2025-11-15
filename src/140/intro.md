@@ -1,1 +1,1 @@
-# Welcome to CSSE140: Practical Security I[text](intro.md)
+# Welcome to CSSE140: Practical Security I
