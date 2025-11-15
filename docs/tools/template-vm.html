@@ -198,8 +198,8 @@
 </ul>
 <h2 id="important-before-uploading-this-to-thm-disable-the-ssh-server"><a class="header" href="#important-before-uploading-this-to-thm-disable-the-ssh-server">Important! Before uploading this to THM, disable the SSH server.</a></h2>
 <p><code>systemctl disable sshd</code></p>
-<h3 id="docker-config"><a class="header" href="#docker-config">Docker Config</a></h3>
-<p>This VM has Docker pre-installed. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always.</p>
+<h3 id="want-to-use-docker"><a class="header" href="#want-to-use-docker">Want to use Docker?</a></h3>
+<p>This VM has Docker pre-installed and is ready for use. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always.</p>
 <p><code>docker run -d --restart always </code></p>
 <p>For example, to have it run the tenders container, log in as root and then run:</p>
 <p><code>docker run -d --restart always -p 80:3000 henthornlab/tenders</code></p>

@@ -467,8 +467,8 @@ Be sure that you have version 17 or higher.</p>
 </ul>
 <h2 id="important-before-uploading-this-to-thm-disable-the-ssh-server"><a class="header" href="#important-before-uploading-this-to-thm-disable-the-ssh-server">Important! Before uploading this to THM, disable the SSH server.</a></h2>
 <p><code>systemctl disable sshd</code></p>
-<h3 id="docker-config"><a class="header" href="#docker-config">Docker Config</a></h3>
-<p>This VM has Docker pre-installed. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always.</p>
+<h3 id="want-to-use-docker"><a class="header" href="#want-to-use-docker">Want to use Docker?</a></h3>
+<p>This VM has Docker pre-installed and is ready for use. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always.</p>
 <p><code>docker run -d --restart always </code></p>
 <p>For example, to have it run the tenders container, log in as root and then run:</p>
 <p><code>docker run -d --restart always -p 80:3000 henthornlab/tenders</code></p>
@@ -1203,6 +1203,24 @@ You called the program with 1 options. They are:
 <h2 id="how-does-c2-work"><a class="header" href="#how-does-c2-work">How does C2 work?</a></h2>
 <p>Start Wireshark and begin capturing traffic between your server and the implant. What do you see?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-csse490-penetration-testing"><a class="header" href="#welcome-to-csse490-penetration-testing">Welcome to CSSE490: Penetration Testing</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="week-9"><a class="header" href="#week-9">Week 9</a></h1>
+<p>We start pentesting our simulated small office network.</p>
+<p><img src="pentesting/./network.png" alt="example network diagram" /></p>
+<p>Your objectives:</p>
+<ul>
+<li>Set up scope documents before commencing work.</li>
+<li>Can you get into their WiFi network?</li>
+<li>Can you move laterally?</li>
+<li>Find vulnerabilities and exploit them.</li>
+<li>Can you escalate privileges?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="week-10"><a class="header" href="#week-10">Week 10</a></h1>
+<p>We continue our work with pentesting of our small office network.</p>
+<p>We finish the course by completing two tasks:</p>
+<ul>
+<li>Writing a final report on our findings.</li>
+<li>Suggesting potential upgrades to this small office network challenge for future pentesting classes.</li>
+</ul>
 
                     </main>
 

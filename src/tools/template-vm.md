@@ -18,8 +18,8 @@ Usage:
 
 ```systemctl disable sshd```
 
-### Docker Config
-This VM has Docker pre-installed. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always. 
+### Want to use Docker?
+This VM has Docker pre-installed and is ready for use. Make sure you run the container mode in detached (-d) mode and tell it to restart itself always. 
 
 ```docker run -d --restart always ```
 

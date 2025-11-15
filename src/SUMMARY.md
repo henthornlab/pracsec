@@ -63,7 +63,8 @@
     - [C2 and Kali part 2](./142/sliver2.md)
 
 - [Pentesting](./pentesting/intro.md)
-
+  - [Week 9](./pentesting/week9.md)
+  - [Week 10](./pentesting/week10.md)
 
 
 
