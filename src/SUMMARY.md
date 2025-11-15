@@ -1,5 +1,5 @@
 # Summary
-[Introduction](BANNER.md)
+[Welcome](BANNER.md)
 
 - [Tools](./tools/tools.md)
     - [Virtual Machines](./tools/vms.md)
@@ -62,9 +62,19 @@
   - [C2 and Kali](./142/sliver.md)
     - [C2 and Kali part 2](./142/sliver2.md)
 
-- [Pentesting](./pentesting/intro.md)
+- [CSSE 490 Pentesting](./pentesting/intro.md)
+  - [Week 1](./pentesting/week1.md)
+  - [Week 2](./pentesting/week2.md)
+  - [Week 3](./pentesting/week3.md)
+  - [Week 4](./pentesting/week4.md)
+  - [Week 5](./pentesting/week5.md)
+  - [Week 6](./pentesting/week6.md)
+  - [Week 7](./pentesting/week7.md)
+  - [Week 8](./pentesting/week8.md)
   - [Week 9](./pentesting/week9.md)
   - [Week 10](./pentesting/week10.md)
+  - [Cyber Killchain](./pentesting/killchain.md)
+  - [MITRE ATT&CK](./pentesting/mitre.md)
 
 
 
